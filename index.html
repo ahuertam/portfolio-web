@@ -1,0 +1,1936 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Alejandro Huerta — Ingeniero senior de plataforma, WebGL e IA aplicada</title>
+  <meta name="description" content="Ingeniero senior en Madrid (remoto en la UE). Ocho años en la capa de servicios y APIs de una plataforma con ~200M de usuarios mensuales, dueño de partes del runtime WebGL y del editor de autoría 3D, y desde 2025 leader de la línea de IA conversacional en producción.">
+  <meta name="author" content="Alejandro Huerta">
+  <meta name="color-scheme" content="dark light">
+  <meta property="og:title" content="Alejandro Huerta — Ingeniero senior de plataforma, WebGL e IA aplicada">
+  <meta property="og:description" content="APIs a escala, runtime WebGL en tiempo real e IA conversacional en producción. Madrid, remoto en la UE.">
+  <meta property="og:type" content="profile">
+  <meta property="og:locale" content="es_ES">
+  <meta property="profile:first_name" content="Alejandro">
+  <meta property="profile:last_name" content="Huerta">
+  <link rel="canonical" href="https://metalozaru.es/">
+
+  <!-- Sin fuentes externas, sin trackers, sin cookies. -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230d1117'/%3E%3Ctext x='50%25' y='58%25' dominant-baseline='middle' text-anchor='middle' font-family='system-ui,sans-serif' font-size='30' font-weight='700' fill='%2350e3c2'%3EAH%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/src/styles.css">
+  <link rel="stylesheet" href="/src/editor.css">
+  <link rel="preload" href="/cv/Alejandro-Huerta-CV.pdf" as="fetch" crossorigin="anonymous">
+</head>
+<body>
+  <a class="saltar-al-contenido" href="#contenido">Saltar al contenido</a>
+
+  <header class="cabecera">
+    <div class="cabecera-interior">
+      <p class="marca">
+        <span class="marca-inicial" aria-hidden="true">AH</span>
+        <span class="marca-nombre">Alejandro Huerta</span>
+      </p>
+      <nav class="navegacion" aria-label="Principal">
+        <ul>
+          <li><a href="#presentacion">Presentación</a></li>
+          <li><a href="#trayectoria">Trayectoria</a></li>
+          <li><a href="#proyectos">Proyectos</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+          <li><a class="boton-cv" href="/cv/Alejandro-Huerta-CV.pdf" download>CV (PDF)</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+
+    <!-- ============ Portada ============ -->
+    <section class="portada" id="presentacion">
+      <div class="portada-texto">
+        <h1 class="portada-titular">Ingeniero senior de plataforma, WebGL e IA aplicada</h1>
+        <p class="portada-resumen">
+          Ocho años construyendo la capa de servicios y APIs de una plataforma viva de
+          <strong>~200 millones de usuarios mensuales</strong>, dueño de partes del
+          runtime WebGL y del editor de autoría 3D que la alimenta, y desde 2025
+          responsable de la línea de IA conversacional en producción. Antes de programar,
+          diez años de IBM security y pre-sales: por eso diseño para quien tiene que
+          <em>operar</em> lo que entrego.
+        </p>
+        <div class="portada-datos">
+          <dl>
+            <div>
+              <dt>Dónde</dt>
+              <dd>Madrid, España · Remoto en la UE</dd>
+            </div>
+            <div>
+              <dt>Desde 2025</dt>
+              <dd>Liderando IA conversacional: NPCs y mentores de voz en producción</dd>
+            </div>
+            <div>
+              <dt>Contacto</dt>
+              <dd>
+                <a href="mailto:ahuertam@yahoo.es">ahuertam@yahoo.es</a>
+                · <a href="tel:+34687121948">+34 687 121 948</a>
+              </dd>
+            </div>
+          </dl>
+        </div>
+        <p class="portada-acciones">
+          <a class="boton boton-principal" href="/cv/Alejandro-Huerta-CV.pdf" download>Descargar CV (PDF)</a>
+          <a class="boton" href="https://github.com/ahuertam" rel="noopener noreferrer">GitHub</a>
+          <a class="boton" href="https://linkedin.com/in/alejandrohuertaengineer" rel="noopener noreferrer">LinkedIn</a>
+        </p>
+      </div>
+
+      <!--
+        ==========================================================
+        EL EDITOR — concepto activo de la capa interactiva.
+
+        Los paneles son HTML de verdad: la jerarquía, el inspector,
+        la barra de estado y la ayuda de atajos son DOM con CSS.
+        Sólo el viewport es WebGL.
+
+        Sin JavaScript y sin WebGL, los paneles se apilan en vertical
+        y el inspector muestra todas las fichas: sigue siendo el
+        portfolio entero.
+        ==========================================================
+      -->
+      <div class="editor" id="editor">
+
+        <!-- ============ Jerarquía (panel izquierdo) ============ -->
+        <div class="editor-panel editor-panel-izquierda" id="editor-jerarquia">
+          <div class="editor-panel-cabecera">
+            <h2 class="editor-panel-titulo">Jerarquía</h2>
+          </div>
+
+          <div class="editor-buscar">
+            <label class="visualmente-oculto" for="editor-buscar">Buscar en la jerarquía</label>
+            <input
+              type="search"
+              id="editor-buscar"
+              class="editor-buscar-campo"
+              placeholder="Buscar…  ( / )"
+              autocomplete="off"
+              spellcheck="false"
+              aria-describedby="editor-buscar-ayuda"
+            >
+            <p class="editor-buscar-ayuda" id="editor-buscar-ayuda">
+              Escribe para filtrar. <kbd>/</kbd> enfoca el campo.
+            </p>
+          </div>
+
+          <nav class="editor-jerarquia" aria-label="Jerarquía de assets">
+            <ul class="editor-jerarquia-lista" id="editor-jerarquia-lista">
+
+              <!-- El README de la intro, primero -->
+              <li class="editor-fila">
+                <button type="button" class="editor-fila-boton" data-archivo="intro" aria-selected="false" aria-controls="ficha-intro">
+                  <span class="editor-fila-punto" aria-hidden="true" style="--color-asset: #8fb8d8"></span>
+                  <span class="editor-fila-texto">README</span>
+                </button>
+              </li>
+
+              <!-- Proyectos agrupados por tipo -->
+              <li class="editor-grupo">
+                <p class="editor-grupo-titulo">Proyectos propios (11)</p>
+                <ul class="editor-grupo-lista">
+
+              <li class="editor-fila">
+                <button type="button" class="editor-fila-boton" data-archivo="fotoverse" aria-selected="false" aria-controls="ficha-fotoverse">
+                  <span class="editor-fila-punto" aria-hidden="true" style="--color-asset: #7fd1c4"></span>
+                  <span class="editor-fila-texto">fotoverse</span>
+                </button>
+              </li>
+
+              <li class="editor-fila">
+                <button type="button" class="editor-fila-boton" data-archivo="godkai-back" aria-selected="false" aria-controls="ficha-godkai-back">
+                  <span class="editor-fila-punto" aria-hidden="true" style="--color-asset: #9bb8f0"></span>
+                  <span class="editor-fila-texto">godKAI-back</span>
+                </button>
+              </li>
+
+              <li class="editor-fila">
+                <button type="button" class="editor-fila-boton" data-archivo="imagetron" aria-selected="false" aria-controls="ficha-imagetron">
+                  <span class="editor-fila-punto" aria-hidden="true" style="--color-asset: #a9d18c"></span>
+                  <span class="editor-fila-texto">ImageTron</span>
+                </button>
+              </li>
+
+              <li class="editor-fila">
+                <button type="button" class="editor-fila-boton" data-archivo="three-roads" aria-selected="false" aria-controls="ficha-three-roads">
+                  <span class="editor-fila-punto" aria-hidden="true" style="--color-asset: #f2b544"></span>
+                  <span class="editor-fila-texto">Three Roads</span>
+                </button>
+              </li>
+
+              <li class="editor-fila">
+                <button type="button" class="editor-fila-boton" data-archivo="mai" aria-selected="false" aria-controls="ficha-mai">
+                  <span class="editor-fila-punto" aria-hidden="true" style="--color-asset: #a9d18c"></span>
+                  <span class="editor-fila-texto">MAI</span>
+                </button>
+              </li>
+
+              <li class="editor-fila">
+                <button type="button" class="editor-fila-boton" data-archivo="frodo" aria-selected="false" aria-controls="ficha-frodo">
+                  <span class="editor-fila-punto" aria-hidden="true" style="--color-asset: #e08fb0"></span>
+                  <span class="editor-fila-texto">Frodo</span>
+                </button>
+              </li>
+
+              <li class="editor-fila">
+                <button type="button" class="editor-fila-boton" data-archivo="edutika" aria-selected="false" aria-controls="ficha-edutika">
+                  <span class="editor-fila-punto" aria-hidden="true" style="--color-asset: #e08fb0"></span>
+                  <span class="editor-fila-texto">Edutika</span>
+                </button>
+              </li>
+
+              <li class="editor-fila">
+                <button type="button" class="editor-fila-boton" data-archivo="akai25" aria-selected="false" aria-controls="ficha-akai25">
+                  <span class="editor-fila-punto" aria-hidden="true" style="--color-asset: #9bb8f0"></span>
+                  <span class="editor-fila-texto">AKAI25 Web DAW</span>
+                </button>
+              </li>
+
+              <li class="editor-fila">
+                <button type="button" class="editor-fila-boton" data-archivo="roadrol" aria-selected="false" aria-controls="ficha-roadrol">
+                  <span class="editor-fila-punto" aria-hidden="true" style="--color-asset: #f2b544"></span>
+                  <span class="editor-fila-texto">RoadRol</span>
+                </button>
+              </li>
+
+              <li class="editor-fila">
+                <button type="button" class="editor-fila-boton" data-archivo="freeaiapis" aria-selected="false" aria-controls="ficha-freeaiapis">
+                  <span class="editor-fila-punto" aria-hidden="true" style="--color-asset: #e08fb0"></span>
+                  <span class="editor-fila-texto">freeAIApis</span>
+                </button>
+              </li>
+
+              <li class="editor-fila">
+                <button type="button" class="editor-fila-boton" data-archivo="ai-radar" aria-selected="false" aria-controls="ficha-ai-radar">
+                  <span class="editor-fila-punto" aria-hidden="true" style="--color-asset: #e08fb0"></span>
+                  <span class="editor-fila-texto">AI Radar</span>
+                </button>
+              </li>
+                </ul>
+              </li>
+
+              <li class="editor-grupo">
+                <p class="editor-grupo-titulo">Trayectoria profesional (5)</p>
+                <ul class="editor-grupo-lista">
+
+              <li class="editor-fila">
+                <button type="button" class="editor-fila-boton" data-archivo="editor-autoria" aria-selected="false" aria-controls="ficha-editor-autoria">
+                  <span class="editor-fila-punto" aria-hidden="true" style="--color-asset: #b58cf0"></span>
+                  <span class="editor-fila-texto">Editor de autoría 3D</span>
+                </button>
+              </li>
+
+              <li class="editor-fila">
+                <button type="button" class="editor-fila-boton" data-archivo="runtime-webgl" aria-selected="false" aria-controls="ficha-runtime-webgl">
+                  <span class="editor-fila-punto" aria-hidden="true" style="--color-asset: #7fb4f0"></span>
+                  <span class="editor-fila-texto">Runtime WebGL</span>
+                </button>
+              </li>
+
+              <li class="editor-fila">
+                <button type="button" class="editor-fila-boton" data-archivo="ia-conversacional" aria-selected="false" aria-controls="ficha-ia-conversacional">
+                  <span class="editor-fila-punto" aria-hidden="true" style="--color-asset: #8fa8f0"></span>
+                  <span class="editor-fila-texto">Línea de IA conversacional</span>
+                </button>
+              </li>
+
+              <li class="editor-fila">
+                <button type="button" class="editor-fila-boton" data-archivo="api-plataforma" aria-selected="false" aria-controls="ficha-api-plataforma">
+                  <span class="editor-fila-punto" aria-hidden="true" style="--color-asset: #d08fc0"></span>
+                  <span class="editor-fila-texto">Contratos de API a escala</span>
+                </button>
+              </li>
+
+              <li class="editor-fila">
+                <button type="button" class="editor-fila-boton" data-archivo="ibm" aria-selected="false" aria-controls="ficha-ibm">
+                  <span class="editor-fila-punto" aria-hidden="true" style="--color-asset: #9aa8c4"></span>
+                  <span class="editor-fila-texto">Diez años de IBM security y pre-sales</span>
+                </button>
+              </li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        <!-- ============ Viewport ============ -->
+        <div class="editor-viewport">
+          <div id="escena" class="escena" aria-hidden="true">
+            <canvas id="lienzo-3d"></canvas>
+          </div>
+          <div
+            class="editor-grafo"
+            id="editor-grafo"
+            role="application"
+            tabindex="0"
+            aria-label="Grafo de proyectos. Usa las flechas para moverte entre nodos y Enter para ver la ficha."
+          ></div>
+          <div id="escena-estado" class="escena-estado" role="status"></div>
+
+          <!--
+            El contenido textual equivalente al grafo. El grafo es una capa
+            interactiva sobre este texto: sin JavaScript, esta lista es la
+            que se ve.
+          -->
+          <div class="editor-equivalente" id="editor-equivalente">
+            <h3 class="editor-equivalente-titulo">Contenido del grafo</h3>
+            <p>
+              El grafo coloca cada proyecto en un nodo y une los que se
+              relacionan. La información completa de cada uno está en la
+              jerarquía de la izquierda y en el inspector de la derecha.
+            </p>
+            <ul class="editor-equivalente-lista">
+              <li><a href="#ficha-intro">README</a> — Alejandro Huerta — ingeniero senior de plataforma, WebGL e IA aplicada. Madrid, remoto en la UE.</li>
+              <li><a href="#ficha-fotoverse">fotoverse</a> — App de escritorio que recorre tu biblioteca de fotos y vídeos y te deja decidir qué duplicados sobran.</li>
+              <li><a href="#ficha-godkai-back">godKAI-back</a> — Backend de agente conversacional en tiempo real, con voz y texto, de principio a fin.</li>
+              <li><a href="#ficha-imagetron">ImageTron</a> — Convierte una imagen en un mundo 3D navegable, con su objeto en 3D, en el navegador.</li>
+              <li><a href="#ficha-three-roads">Three Roads</a> — Carrera 3D en el navegador, con 21 niveles y pista procedural.</li>
+              <li><a href="#ficha-mai">MAI</a> — Agente de IA local que planifica y ejecuta tareas en la terminal.</li>
+              <li><a href="#ficha-frodo">Frodo</a> — Toolbox de 11 agentes Python autocontenidos.</li>
+              <li><a href="#ficha-edutika">Edutika</a> — 43 minijuegos educativos de matemáticas, lengua y conocimiento, en español y gratis.</li>
+              <li><a href="#ficha-akai25">AKAI25 Web DAW</a> — Estación de trabajo musical en el navegador, conectada a un teclado Akai MPK25.</li>
+              <li><a href="#ficha-roadrol">RoadRol</a> — PWA móvil para dirigir partidas de rol desde el teléfono.</li>
+              <li><a href="#ficha-freeaiapis">freeAIApis</a> — Directorio curado de 32 APIs de IA gratuitas.</li>
+              <li><a href="#ficha-ai-radar">AI Radar</a> — Rankings de modelos de IA por categoría.</li>
+              <li><a href="#ficha-editor-autoria">Editor de autoría 3D</a> — Editor donde se construyen juegos educativos 3D. Developer principal durante 7 años.</li>
+              <li><a href="#ficha-runtime-webgl">Runtime WebGL</a> — Runtime que ejecuta en el navegador lo que se diseña en el editor. Partes de él son suyas.</li>
+              <li><a href="#ficha-ia-conversacional">Línea de IA conversacional</a> — NPCs y mentores de voz en tiempo real, en producción. Lidera esta línea desde 2025.</li>
+              <li><a href="#ficha-api-plataforma">Contratos de API a escala</a> — El servicio de definición de juegos: la API contra la que se construyen todas las herramientas internas y el runtime.</li>
+              <li><a href="#ficha-ibm">Diez años de IBM security y pre-sales</a> — Security Systems Engineer, formador oficial y IT Channel Specialist en el portfolio de IBM.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- ============ Inspector (panel derecho) ============ -->
+        <div class="editor-panel editor-panel-derecha" id="editor-inspector-panel">
+          <div class="editor-panel-cabecera">
+            <h2 class="editor-panel-titulo">Inspector</h2>
+          </div>
+          <div class="editor-inspector" id="editor-inspector">
+            <p class="inspector-vacio">
+              Selecciona un asset en la jerarquía o en el viewport para ver su
+              ficha: la decisión que lo define y su coste.
+            </p>
+
+            <article class="ficha" id="ficha-intro" data-archivo="intro" style="--color-asset: #8fb8d8">
+              <header class="ficha-cabecera">
+                <h3 class="ficha-titulo">README</h3>
+                
+              </header>
+              <p class="ficha-arquetipo">
+                <span class="ficha-punto" aria-hidden="true"></span>Lámina de texto
+              </p>
+              <p class="ficha-frase">Alejandro Huerta — ingeniero senior de plataforma, WebGL e IA aplicada. Madrid, remoto en la UE.</p>
+              <div class="ficha-porque">
+                <h4 class="ficha-subtitulo">Por qué importa</h4>
+                <p>Ocho años construyendo la capa de servicios y APIs de una plataforma viva de ~200 millones de usuarios mensuales, dueño de partes del runtime WebGL y del editor de autoría 3D que la alimenta, y desde 2025 responsable de la línea de IA conversacional en producción. Antes de programar, diez años de IBM security y pre-sales: por eso diseño para quien tiene que operar lo que entrego.</p>
+              </div>
+              <div class="ficha-etapas">
+                <h4 class="ficha-subtitulo">El camino hasta aquí</h4>
+                <ol class="ficha-lista-etapas">
+                  
+              <li class="ficha-etapa ficha-etapa-clave">
+                <span class="ficha-etapa-nombre">Idea</span>
+                <span class="ficha-etapa-titulo">Una web que se lee sin JavaScript</span>
+                <span class="ficha-etapa-detalle">Todo el contenido en el HTML plano: sin scripts que lo generen, sin trackers y sin fuentes que rastreen. La capa 3D es un extra encima, nunca la fuente.</span>
+              </li>
+              <li class="ficha-etapa">
+                <span class="ficha-etapa-nombre">Prototipo</span>
+                <span class="ficha-etapa-titulo">Los paneles son HTML, el viewport es WebGL</span>
+                <span class="ficha-etapa-detalle">Jerarquía, inspector y barra de estado son DOM con CSS. Eso da accesibilidad, texto seleccionable y un fallback que funciona sin WebGL.</span>
+              </li>
+              <li class="ficha-etapa">
+                <span class="ficha-etapa-nombre">Plataforma</span>
+                <span class="ficha-etapa-titulo">Una sola fuente de verdad</span>
+                <span class="ficha-etapa-detalle">El HTML y la escena leen el mismo `src/data/projects.js`. Cambiar un arquetipo o una frase es cambiar una línea de datos, no de código.</span>
+              </li>
+                </ol>
+              </div>
+              <ul class="ficha-stack">
+              <li>TypeScript</li>
+              <li>Rust</li>
+              <li>Python</li>
+              <li>Three.js</li>
+            </ul>
+              <div class="ficha-enlaces">
+                
+              </div>
+            </article>
+
+            <article class="ficha" id="ficha-fotoverse" data-archivo="fotoverse" style="--color-asset: #7fd1c4">
+              <header class="ficha-cabecera">
+                <h3 class="ficha-titulo">fotoverse</h3>
+                <span class="ficha-anio">2026</span>
+              </header>
+              <p class="ficha-arquetipo">
+                <span class="ficha-punto" aria-hidden="true"></span>Pila de planos
+              </p>
+              <p class="ficha-frase">App de escritorio que recorre tu biblioteca de fotos y vídeos y te deja decidir qué duplicados sobran.</p>
+              <div class="ficha-porque">
+                <h4 class="ficha-subtitulo">Por qué importa</h4>
+                <p>Reimplementé el pHash a mano (~150 líneas de DCT 2D separable) en vez de usar una librería, porque las que existían estaban atadas a una versión incompatible del crate `image`. Reimplementar me daba control sobre el formato del hash — y me costó una tarde. Lo importante es la segunda decisión: el borrado va siempre a la papelera del sistema operativo, nunca es permanente. Una app que borra fotos de la gente tiene que poder equivocarse.</p>
+              </div>
+              <div class="ficha-etapas">
+                <h4 class="ficha-subtitulo">El camino hasta aquí</h4>
+                <ol class="ficha-lista-etapas">
+                  
+              <li class="ficha-etapa">
+                <span class="ficha-etapa-nombre">Idea</span>
+                <span class="ficha-etapa-titulo">Diez años de fotos y ninguna respuesta</span>
+                <span class="ficha-etapa-detalle">El problema no es &quot;buscar duplicados&quot;: es que el mismo `IMG_1234.jpg` está en tres carpetas y no sabes cuál es la buena.</span>
+              </li>
+              <li class="ficha-etapa">
+                <span class="ficha-etapa-nombre">Prototipo</span>
+                <span class="ficha-etapa-titulo">pHash propio, en Rust</span>
+                <span class="ficha-etapa-detalle">DCT 2D separable sobre 32×32 en escala de grises, bloque 8×8, umbral por mediana, 64 bits. Eligiendo implementarlo por criterio y no por tutorial: la librería `img_hash` usa una feature de nightly y ata su versión de `image`.</span>
+              </li>
+              <li class="ficha-etapa ficha-etapa-clave">
+                <span class="ficha-etapa-nombre">Plataforma</span>
+                <span class="ficha-etapa-titulo">Agrupar es O(n²), y eso hay que decirlo</span>
+                <span class="ficha-etapa-detalle">Union-Find con distancia de Hamming ≤ 10 y poda por salida temprana. El techo de 5.000 imágenes está nombrado en el código y el warning dice lo que va a pasar: cuando se supera, hace falta un BK-tree. Dejar el límite escrito es más honesto que ocultarlo.</span>
+              </li>
+              <li class="ficha-etapa ficha-etapa-clave">
+                <span class="ficha-etapa-nombre">Operación</span>
+                <span class="ficha-etapa-titulo">Borrar a la papelera, siempre</span>
+                <span class="ficha-etapa-detalle">El módulo se llama `papelera` y usa la crate `trash` de forma multiplataforma. Si el sistema no tiene papelera, el borrado falla y el fichero se queda. En ningún caso hay borrado permanente.</span>
+              </li>
+                </ol>
+              </div>
+              <ul class="ficha-stack">
+              <li>Rust</li>
+              <li>Tauri 2</li>
+              <li>React 19</li>
+              <li>SQLite</li>
+            </ul>
+              <div class="ficha-enlaces">
+                <a class="ficha-enlace" href="https://github.com/ahuertam/fotoverse" rel="noopener noreferrer">Código <span aria-hidden="true">↗</span><span class="visualmente-oculto"> (repositorio de fotoverse en GitHub)</span></a>
+              </div>
+            </article>
+
+            <article class="ficha" id="ficha-godkai-back" data-archivo="godkai-back" style="--color-asset: #9bb8f0">
+              <header class="ficha-cabecera">
+                <h3 class="ficha-titulo">godKAI-back</h3>
+                <span class="ficha-anio">2026</span>
+              </header>
+              <p class="ficha-arquetipo">
+                <span class="ficha-punto" aria-hidden="true"></span>Ondas de voz
+              </p>
+              <p class="ficha-frase">Backend de agente conversacional en tiempo real, con voz y texto, de principio a fin.</p>
+              <div class="ficha-porque">
+                <h4 class="ficha-subtitulo">Por qué importa</h4>
+                <p>El valor de este proyecto no es que el agente hable: es que la cadena entera esté detrás de interfaces. Cada proveedor —vector store, cada modelo— se sustituye, así que el servicio degrada en vez de caerse. En producción, &quot;degradar&quot; y &quot;caerse&quot; no son sinónimos: uno es una molestia y el otro es una guardia.</p>
+              </div>
+              <div class="ficha-etapas">
+                <h4 class="ficha-subtitulo">El camino hasta aquí</h4>
+                <ol class="ficha-lista-etapas">
+                  
+              <li class="ficha-etapa">
+                <span class="ficha-etapa-nombre">Idea</span>
+                <span class="ficha-etapa-titulo">Hablar con un modelo en tiempo real</span>
+                <span class="ficha-etapa-detalle">La cadena STT → LLM → TTS tal y como la oyes en un producto, con detección de turnos y cancelación de ruido.</span>
+              </li>
+              <li class="ficha-etapa">
+                <span class="ficha-etapa-nombre">Prototipo</span>
+                <span class="ficha-etapa-titulo">Que cada pieza sea intercambiable</span>
+                <span class="ficha-etapa-detalle">Deepgram, Gemini, OpenAI, Ollama: se configuran por `config.json`. Cambiar de modelo es cambiar una línea, no reescribir el pipeline.</span>
+              </li>
+              <li class="ficha-etapa ficha-etapa-clave">
+                <span class="ficha-etapa-nombre">Plataforma</span>
+                <span class="ficha-etapa-titulo">Cada dependencia externa detrás de una interfaz</span>
+                <span class="ficha-etapa-detalle">Si el vector store o un proveedor de modelos se cae, el servicio sigue respondiendo con menos. Esta es la misma regla que aplico en el servicio de voz de producción.</span>
+              </li>
+                </ol>
+              </div>
+              <ul class="ficha-stack">
+              <li>Python</li>
+              <li>LiveKit</li>
+              <li>STT</li>
+              <li>LLM</li>
+              <li>TTS</li>
+            </ul>
+              <div class="ficha-enlaces">
+                <a class="ficha-enlace" href="https://github.com/ahuertam/godkAI-back" rel="noopener noreferrer">Código <span aria-hidden="true">↗</span><span class="visualmente-oculto"> (repositorio de godKAI-back en GitHub)</span></a>
+              </div>
+            </article>
+
+            <article class="ficha" id="ficha-imagetron" data-archivo="imagetron" style="--color-asset: #a9d18c">
+              <header class="ficha-cabecera">
+                <h3 class="ficha-titulo">ImageTron</h3>
+                <span class="ficha-anio">2026</span>
+              </header>
+              <p class="ficha-arquetipo">
+                <span class="ficha-punto" aria-hidden="true"></span>Nube de puntos
+              </p>
+              <p class="ficha-frase">Convierte una imagen en un mundo 3D navegable, con su objeto en 3D, en el navegador.</p>
+              <div class="ficha-porque">
+                <h4 class="ficha-subtitulo">Por qué importa</h4>
+                <p>El punto interesante no es generar el 3D: es hacerlo en paralelo y que el navegador lo monte sin bloquearse. El progreso llega por SSE y la escena React Three Fiber se monta sobre un Gaussian Splat y un `.glb` que llegan por separado.</p>
+              </div>
+              <div class="ficha-etapas">
+                <h4 class="ficha-subtitulo">El camino hasta aquí</h4>
+                <ol class="ficha-lista-etapas">
+                  
+              <li class="ficha-etapa">
+                <span class="ficha-etapa-nombre">Idea</span>
+                <span class="ficha-etapa-titulo">Una foto, un lugar</span>
+                <span class="ficha-etapa-detalle">Subes una imagen y obtienes un entorno navegable generado por World Labs, más el modelo 3D del objeto.</span>
+              </li>
+              <li class="ficha-etapa">
+                <span class="ficha-etapa-nombre">Prototipo</span>
+                <span class="ficha-etapa-titulo">Dos jobs en paralelo</span>
+                <span class="ficha-etapa-detalle">El entorno y el objeto se generan a la vez. Uno puede fallar sin tumbar al otro, y el GIF de la demo lo enseña en rojo.</span>
+              </li>
+              <li class="ficha-etapa">
+                <span class="ficha-etapa-nombre">Plataforma</span>
+                <span class="ficha-etapa-titulo">Caché por hash y límites de seguridad</span>
+                <span class="ficha-etapa-detalle">El resultado se cachea por hash de la imagen de entrada, para no pagar dos veces la misma generación. Los límites de tamaño y los jobs se documentan por escrito.</span>
+              </li>
+                </ol>
+              </div>
+              <ul class="ficha-stack">
+              <li>TypeScript</li>
+              <li>React 19</li>
+              <li>R3F</li>
+              <li>SSE</li>
+            </ul>
+              <div class="ficha-enlaces">
+                <a class="ficha-enlace" href="https://github.com/ahuertam/imageTron" rel="noopener noreferrer">Código <span aria-hidden="true">↗</span><span class="visualmente-oculto"> (repositorio de ImageTron en GitHub)</span></a>
+              </div>
+            </article>
+
+            <article class="ficha" id="ficha-three-roads" data-archivo="three-roads" style="--color-asset: #f2b544">
+              <header class="ficha-cabecera">
+                <h3 class="ficha-titulo">Three Roads</h3>
+                <span class="ficha-anio">2026</span>
+              </header>
+              <p class="ficha-arquetipo">
+                <span class="ficha-punto" aria-hidden="true"></span>Carril en perspectiva
+              </p>
+              <p class="ficha-frase">Carrera 3D en el navegador, con 21 niveles y pista procedural.</p>
+              <div class="ficha-porque">
+                <h4 class="ficha-subtitulo">Por qué importa</h4>
+                <p>El ejercicio de cerrar el círculo: física, ECS propio, estado reactivo y render 3D, todo en una web que se abre con un enlace. No es un hobby: es el terreno donde se pratica el runtime WebGL que luego se usa en producto.</p>
+              </div>
+              <div class="ficha-etapas">
+                <h4 class="ficha-subtitulo">El camino hasta aquí</h4>
+                <ol class="ficha-lista-etapas">
+                  
+              <li class="ficha-etapa">
+                <span class="ficha-etapa-nombre">Idea</span>
+                <span class="ficha-etapa-titulo">Un juego que no necesita instalar nada</span>
+                <span class="ficha-etapa-detalle">Se juega en el navegador y se comparte por URL. Nada de descarga, nada de cuenta.</span>
+              </li>
+              <li class="ficha-etapa">
+                <span class="ficha-etapa-nombre">Prototipo</span>
+                <span class="ficha-etapa-titulo">ECS propio en vez de un framework</span>
+                <span class="ficha-etapa-detalle">Un sistema de entidades-componentes propio para la lógica, y Zustand para el estado de la interfaz. Separar las dos cosas es lo que permite que el render no se entere de las reglas.</span>
+              </li>
+              <li class="ficha-etapa">
+                <span class="ficha-etapa-nombre">Plataforma</span>
+                <span class="ficha-etapa-titulo">21 niveles y pista procedural</span>
+                <span class="ficha-etapa-detalle">La pista se genera por código, así que añadir niveles es contenido, no trabajo de arte.</span>
+              </li>
+                </ol>
+              </div>
+              <ul class="ficha-stack">
+              <li>React Three Fiber</li>
+              <li>Three.js</li>
+              <li>Cannon.js</li>
+              <li>Zustand</li>
+            </ul>
+              <div class="ficha-enlaces">
+                <a class="ficha-enlace" href="https://github.com/ahuertam/three_roads" rel="noopener noreferrer">Código <span aria-hidden="true">↗</span><span class="visualmente-oculto"> (repositorio de Three Roads en GitHub)</span></a>
+                <a class="ficha-enlace" href="https://ahuertam.github.io/three_roads/" rel="noopener noreferrer">En vivo <span aria-hidden="true">↗</span><span class="visualmente-oculto"> (demostración de Three Roads)</span></a>
+              </div>
+            </article>
+
+            <article class="ficha" id="ficha-mai" data-archivo="mai" style="--color-asset: #a9d18c">
+              <header class="ficha-cabecera">
+                <h3 class="ficha-titulo">MAI</h3>
+                <span class="ficha-anio">2026</span>
+              </header>
+              <p class="ficha-arquetipo">
+                <span class="ficha-punto" aria-hidden="true"></span>Nube de puntos
+              </p>
+              <p class="ficha-frase">Agente de IA local que planifica y ejecuta tareas en la terminal.</p>
+              <div class="ficha-porque">
+                <h4 class="ficha-subtitulo">Por qué importa</h4>
+                <p>El detalle que importa es dónde vive: <strong>en tu máquina, con Ollama, sin cuenta ni API key</strong>. Es un agente que planifica antes de actuar, y que te da el feedback en la propia consola, sin interfaz de por medio.</p>
+              </div>
+              <div class="ficha-etapas">
+                <h4 class="ficha-subtitulo">El camino hasta aquí</h4>
+                <ol class="ficha-lista-etapas">
+                  
+              <li class="ficha-etapa">
+                <span class="ficha-etapa-nombre">Idea</span>
+                <span class="ficha-etapa-titulo">Un plan, no una lista de comandos</span>
+                <span class="ficha-etapa-detalle">El modelo genera un plan ejecutable y luego lo ejecuta, informando paso a paso.</span>
+              </li>
+              <li class="ficha-etapa">
+                <span class="ficha-etapa-nombre">Prototipo</span>
+                <span class="ficha-etapa-titulo">Local y sin credenciales</span>
+                <span class="ficha-etapa-detalle">Ollama en local. La instalación se resuelve en un script, con detección del sistema operativo y del propio Ollama.</span>
+              </li>
+              <li class="ficha-etapa">
+                <span class="ficha-etapa-nombre">Plataforma</span>
+                <span class="ficha-etapa-titulo">Extensible hacia voz</span>
+                <span class="ficha-etapa-detalle">La arquitectura ya está pensada para poder añadir LiveKit y pasar a interacción por voz sin rehacer el agente.</span>
+              </li>
+                </ol>
+              </div>
+              <ul class="ficha-stack">
+              <li>Python</li>
+              <li>Ollama</li>
+            </ul>
+              <div class="ficha-enlaces">
+                <a class="ficha-enlace" href="https://github.com/ahuertam/mai" rel="noopener noreferrer">Código <span aria-hidden="true">↗</span><span class="visualmente-oculto"> (repositorio de MAI en GitHub)</span></a>
+              </div>
+            </article>
+
+            <article class="ficha" id="ficha-frodo" data-archivo="frodo" style="--color-asset: #e08fb0">
+              <header class="ficha-cabecera">
+                <h3 class="ficha-titulo">Frodo</h3>
+                <span class="ficha-anio">2026</span>
+              </header>
+              <p class="ficha-arquetipo">
+                <span class="ficha-punto" aria-hidden="true"></span>Rejilla de minijuegos
+              </p>
+              <p class="ficha-frase">Toolbox de 11 agentes Python autocontenidos.</p>
+              <div class="ficha-porque">
+                <h4 class="ficha-subtitulo">Por qué importa</h4>
+                <p>Cada agente vive en su carpeta, con su `requirements.txt`, y funciona solo. No hay framework ni runtime compartido. Cuando un agente se rompe, no arrastra a los otros diez — que es exactamente el comportamiento que busqué en los servicios de IA de producción.</p>
+              </div>
+              <div class="ficha-etapas">
+                <h4 class="ficha-subtitulo">El camino hasta aquí</h4>
+                <ol class="ficha-lista-etapas">
+                  
+              <li class="ficha-etapa">
+                <span class="ficha-etapa-nombre">Idea</span>
+                <span class="ficha-etapa-titulo">Un problema, un script</span>
+                <span class="ficha-etapa-detalle">Ilustrador, cartógrafo de mundos, narrador... herramientas pequeñas que resuelven una cosa concreta.</span>
+              </li>
+              <li class="ficha-etapa ficha-etapa-clave">
+                <span class="ficha-etapa-nombre">Prototipo</span>
+                <span class="ficha-etapa-titulo">El LLM como emisor de datos estructurados</span>
+                <span class="ficha-etapa-detalle">En el cartógrafo, el modelo no escribe prosa: diseña la estructura lógica del mapa con un esquema tipado y la emite en JSON. Contrato estricto y cadena de respaldo.</span>
+              </li>
+              <li class="ficha-etapa">
+                <span class="ficha-etapa-nombre">Plataforma</span>
+                <span class="ficha-etapa-titulo">Aislamiento total entre agentes</span>
+                <span class="ficha-etapa-detalle">Sin runtime compartido, un fallo en un agente no afecta a los demás. El mismo criterio que en el servicio de IA de producción.</span>
+              </li>
+                </ol>
+              </div>
+              <ul class="ficha-stack">
+              <li>Python</li>
+            </ul>
+              <div class="ficha-enlaces">
+                <a class="ficha-enlace" href="https://github.com/ahuertam/frodo" rel="noopener noreferrer">Código <span aria-hidden="true">↗</span><span class="visualmente-oculto"> (repositorio de Frodo en GitHub)</span></a>
+              </div>
+            </article>
+
+            <article class="ficha" id="ficha-edutika" data-archivo="edutika" style="--color-asset: #e08fb0">
+              <header class="ficha-cabecera">
+                <h3 class="ficha-titulo">Edutika</h3>
+                <span class="ficha-anio">2026</span>
+              </header>
+              <p class="ficha-arquetipo">
+                <span class="ficha-punto" aria-hidden="true"></span>Rejilla de minijuegos
+              </p>
+              <p class="ficha-frase">43 minijuegos educativos de matemáticas, lengua y conocimiento, en español y gratis.</p>
+              <div class="ficha-porque">
+                <h4 class="ficha-subtitulo">Por qué importa</h4>
+                <p>Está en <strong>edutika.es</strong>, vivo y público, y funciona sin cuenta ni descargas. Cada juego se carga por separado cuando lo abres, no los 43 de golpe, y el catálogo de juegos vive en un único fichero de configuración. Es un producto para niños que se usa en un aula real, y por eso cada juego es una pantalla y una mecánicas, no una demo.</p>
+              </div>
+              <div class="ficha-etapas">
+                <h4 class="ficha-subtitulo">El camino hasta aquí</h4>
+                <ol class="ficha-lista-etapas">
+                  
+              <li class="ficha-etapa">
+                <span class="ficha-etapa-nombre">Idea</span>
+                <span class="ficha-etapa-titulo">Practicar sin cuentas ni descargas</span>
+                <span class="ficha-etapa-detalle">Ni registro, ni descargas, ni paywall. Se abre y se juega. La decisión elimina la fricción justo donde el usuario es un niño.</span>
+              </li>
+              <li class="ficha-etapa">
+                <span class="ficha-etapa-nombre">Prototipo</span>
+                <span class="ficha-etapa-titulo">Un juego = una pantalla y una mecánica</span>
+                <span class="ficha-etapa-detalle">El mismo juego puede aparecer en varias categorías. La lógica vive en la configuración, no duplicada en cada componente.</span>
+              </li>
+              <li class="ficha-etapa ficha-etapa-clave">
+                <span class="ficha-etapa-nombre">Plataforma</span>
+                <span class="ficha-etapa-titulo">Carga bajo demanda y progreso local</span>
+                <span class="ficha-etapa-detalle">Los 43 juegos no se descargan de golpe: cada uno baja su trozo al abrirlo. Un catálogo único en `src/config/games.js` gobierna navegación, carga y progreso.</span>
+              </li>
+              <li class="ficha-etapa">
+                <span class="ficha-etapa-nombre">Operación</span>
+                <span class="ficha-etapa-titulo">En producción y en uso</span>
+                <span class="ficha-etapa-detalle">Publicada en edutika.es. Un producto de juguete que sale de las once de la noche y lo usan niños de verdad.</span>
+              </li>
+                </ol>
+              </div>
+              <ul class="ficha-stack">
+              <li>JavaScript</li>
+              <li>React</li>
+              <li>Phaser</li>
+              <li>Matter.js</li>
+            </ul>
+              <div class="ficha-enlaces">
+                <a class="ficha-enlace" href="https://github.com/ahuertam/education" rel="noopener noreferrer">Código <span aria-hidden="true">↗</span><span class="visualmente-oculto"> (repositorio de Edutika en GitHub)</span></a>
+                <a class="ficha-enlace" href="https://edutika.es" rel="noopener noreferrer">En vivo <span aria-hidden="true">↗</span><span class="visualmente-oculto"> (demostración de Edutika)</span></a>
+              </div>
+            </article>
+
+            <article class="ficha" id="ficha-akai25" data-archivo="akai25" style="--color-asset: #9bb8f0">
+              <header class="ficha-cabecera">
+                <h3 class="ficha-titulo">AKAI25 Web DAW</h3>
+                <span class="ficha-anio">2026</span>
+              </header>
+              <p class="ficha-arquetipo">
+                <span class="ficha-punto" aria-hidden="true"></span>Ondas de voz
+              </p>
+              <p class="ficha-frase">Estación de trabajo musical en el navegador, conectada a un teclado Akai MPK25.</p>
+              <div class="ficha-porque">
+                <h4 class="ficha-subtitulo">Por qué importa</h4>
+                <p>Puente entre hardware MIDI y navegador con latencia mínima: Web MIDI API y Tone.js, sin drivers ni instalación. Y un detalle de ergonomía: funciona igual sin el teclado conectado — hay un teclado virtual en pantalla, así que se puede probar en cualquier navegador y la demo no depende de tener el aparato a mano.</p>
+              </div>
+              <div class="ficha-etapas">
+                <h4 class="ficha-subtitulo">El camino hasta aquí</h4>
+                <ol class="ficha-lista-etapas">
+                  
+              <li class="ficha-etapa">
+                <span class="ficha-etapa-nombre">Idea</span>
+                <span class="ficha-etapa-titulo">Tocar sin instalar nada</span>
+                <span class="ficha-etapa-detalle">El MKP25 se convierte en un instrumento virtual en una pestaña del navegador.</span>
+              </li>
+              <li class="ficha-etapa">
+                <span class="ficha-etapa-nombre">Prototipo</span>
+                <span class="ficha-etapa-titulo">Latencia por debajo de lo que se nota</span>
+                <span class="ficha-etapa-detalle">Web MIDI API con Tone.js: el evento MIDI llega al sintetizador sin pasar por un plugin nativo.</span>
+              </li>
+              <li class="ficha-etapa">
+                <span class="ficha-etapa-nombre">Plataforma</span>
+                <span class="ficha-etapa-titulo">Grabas, escuchas y descargas</span>
+                <span class="ficha-etapa-detalle">Persistencia de las grabaciones y exportación a fichero. Lo mínimo para que una idea musical no se pierda al cerrar la pestaña.</span>
+              </li>
+                </ol>
+              </div>
+              <ul class="ficha-stack">
+              <li>React</li>
+              <li>Tone.js</li>
+              <li>Web MIDI API</li>
+            </ul>
+              <div class="ficha-enlaces">
+                <a class="ficha-enlace" href="https://github.com/ahuertam/akai25" rel="noopener noreferrer">Código <span aria-hidden="true">↗</span><span class="visualmente-oculto"> (repositorio de AKAI25 Web DAW en GitHub)</span></a>
+                <a class="ficha-enlace" href="https://ahuertam.github.io/akai25/" rel="noopener noreferrer">En vivo <span aria-hidden="true">↗</span><span class="visualmente-oculto"> (demostración de AKAI25 Web DAW)</span></a>
+              </div>
+            </article>
+
+            <article class="ficha" id="ficha-roadrol" data-archivo="roadrol" style="--color-asset: #f2b544">
+              <header class="ficha-cabecera">
+                <h3 class="ficha-titulo">RoadRol</h3>
+                <span class="ficha-anio">2026</span>
+              </header>
+              <p class="ficha-arquetipo">
+                <span class="ficha-punto" aria-hidden="true"></span>Carril en perspectiva
+              </p>
+              <p class="ficha-frase">PWA móvil para dirigir partidas de rol desde el teléfono.</p>
+              <div class="ficha-porque">
+                <h4 class="ficha-subtitulo">Por qué importa</h4>
+                <p>Pensado para el escenario real: el master va en un viaje largo, con el móvil en la mano y sin cobertura decente. Sin cuentas, sin backend y sin API keys: todo local en el dispositivo, y la partida se comparte por enlace. Es la decisión de arquitectura que hace que la app funcione donde la red no.</p>
+              </div>
+              <div class="ficha-etapas">
+                <h4 class="ficha-subtitulo">El camino hasta aquí</h4>
+                <ol class="ficha-lista-etapas">
+                  
+              <li class="ficha-etapa">
+                <span class="ficha-etapa-nombre">Idea</span>
+                <span class="ficha-etapa-titulo">La partida ocurre en la mesa, pero el master está en la carretera</span>
+                <span class="ficha-etapa-detalle">Generar misiones y encuentros desde packs, tirar dados y editar stats en caliente.</span>
+              </li>
+              <li class="ficha-etapa">
+                <span class="ficha-etapa-nombre">Prototipo</span>
+                <span class="ficha-etapa-titulo">Mobile-first de verdad</span>
+                <span class="ficha-etapa-detalle">La interfaz se diseñó para el pulgar y para jugar con una sola mano, no para ser un móvil con un escritorio encogido.</span>
+              </li>
+              <li class="ficha-etapa ficha-etapa-clave">
+                <span class="ficha-etapa-nombre">Plataforma</span>
+                <span class="ficha-etapa-titulo">Cero backend, cero cuentas</span>
+                <span class="ficha-etapa-detalle">Todo local en el dispositivo y la partida se comparte por enlace. Sin API keys ni infraestructura que mantener.</span>
+              </li>
+                </ol>
+              </div>
+              <ul class="ficha-stack">
+              <li>JavaScript</li>
+              <li>PWA</li>
+              <li>Web App Manifest</li>
+            </ul>
+              <div class="ficha-enlaces">
+                <a class="ficha-enlace" href="https://github.com/ahuertam/roadRol" rel="noopener noreferrer">Código <span aria-hidden="true">↗</span><span class="visualmente-oculto"> (repositorio de RoadRol en GitHub)</span></a>
+              </div>
+            </article>
+
+            <article class="ficha" id="ficha-freeaiapis" data-archivo="freeaiapis" style="--color-asset: #e08fb0">
+              <header class="ficha-cabecera">
+                <h3 class="ficha-titulo">freeAIApis</h3>
+                <span class="ficha-anio">2026</span>
+              </header>
+              <p class="ficha-arquetipo">
+                <span class="ficha-punto" aria-hidden="true"></span>Rejilla de minijuegos
+              </p>
+              <p class="ficha-frase">Directorio curado de 32 APIs de IA gratuitas.</p>
+              <div class="ficha-porque">
+                <h4 class="ficha-subtitulo">Por qué importa</h4>
+                <p>Mano de obra mínima y un criterio claro: la mayoría de estos servicios ya no son gratis de verdad, o lo fueron hasta agosto de 2025 y ahora dejan de serlo. Separar las que siguen siendo gratuitas de las que ya no, y decirlo, es más útil que una lista larga sin fechas.</p>
+              </div>
+              <div class="ficha-etapas">
+                <h4 class="ficha-subtitulo">El camino hasta aquí</h4>
+                <ol class="ficha-lista-etapas">
+                  
+              <li class="ficha-etapa">
+                <span class="ficha-etapa-nombre">Idea</span>
+                <span class="ficha-etapa-titulo">Encontrar qué sigue siendo gratis</span>
+                <span class="ficha-etapa-detalle">Un problema pequeño con una respuesta que cambia cada pocos meses.</span>
+              </li>
+              <li class="ficha-etapa">
+                <span class="ficha-etapa-nombre">Prototipo</span>
+                <span class="ficha-etapa-titulo">HTML y nada más</span>
+                <span class="ficha-etapa-detalle">Un directorio no necesita un framework. Sin dependencias, sin build, sin mantenimiento.</span>
+              </li>
+              <li class="ficha-etapa">
+                <span class="ficha-etapa-nombre">Operación</span>
+                <span class="ficha-etapa-titulo">Revisado, no congelado</span>
+                <span class="ficha-etapa-detalle">Cada entrada lleva la fecha en que se comprobó. Un directorio sin fechas es un directorio de mentiras en tres meses.</span>
+              </li>
+                </ol>
+              </div>
+              <ul class="ficha-stack">
+              <li>HTML</li>
+            </ul>
+              <div class="ficha-enlaces">
+                <a class="ficha-enlace" href="https://github.com/ahuertam/freeAIApis" rel="noopener noreferrer">Código <span aria-hidden="true">↗</span><span class="visualmente-oculto"> (repositorio de freeAIApis en GitHub)</span></a>
+              </div>
+            </article>
+
+            <article class="ficha" id="ficha-ai-radar" data-archivo="ai-radar" style="--color-asset: #e08fb0">
+              <header class="ficha-cabecera">
+                <h3 class="ficha-titulo">AI Radar</h3>
+                <span class="ficha-anio">2026</span>
+              </header>
+              <p class="ficha-arquetipo">
+                <span class="ficha-punto" aria-hidden="true"></span>Rejilla de minijuegos
+              </p>
+              <p class="ficha-frase">Rankings de modelos de IA por categoría.</p>
+              <div class="ficha-porque">
+                <h4 class="ficha-subtitulo">Por qué importa</h4>
+                <p>Comparar modelos por *categoría de tarea* y no por una puntuación global. El modelo mejor del ranking global rara vez es el mejor para tu tarea concreta, y un ranking que no distingue eso no sirve para decidir.</p>
+              </div>
+              <div class="ficha-etapas">
+                <h4 class="ficha-subtitulo">El camino hasta aquí</h4>
+                <ol class="ficha-lista-etapas">
+                  
+              <li class="ficha-etapa">
+                <span class="ficha-etapa-nombre">Idea</span>
+                <span class="ficha-etapa-titulo">Un ranking único no sirve para decidir</span>
+                <span class="ficha-etapa-detalle">El leaderboard general mezcla tareas incompatibles. Por categoría, el orden cambia por completo.</span>
+              </li>
+              <li class="ficha-etapa">
+                <span class="ficha-etapa-nombre">Prototipo</span>
+                <span class="ficha-etapa-titulo">HTML, CSS y un poco de JS</span>
+                <span class="ficha-etapa-detalle">Sin framework y sin build. Para una tabla con filtros, es más que suficiente.</span>
+              </li>
+                </ol>
+              </div>
+              <ul class="ficha-stack">
+              <li>HTML</li>
+            </ul>
+              <div class="ficha-enlaces">
+                <a class="ficha-enlace" href="https://github.com/ahuertam/ai-radar" rel="noopener noreferrer">Código <span aria-hidden="true">↗</span><span class="visualmente-oculto"> (repositorio de AI Radar en GitHub)</span></a>
+              </div>
+            </article>
+
+            <article class="ficha" id="ficha-editor-autoria" data-archivo="editor-autoria" style="--color-asset: #b58cf0">
+              <header class="ficha-cabecera">
+                <h3 class="ficha-titulo">Editor de autoría 3D</h3>
+                
+              </header>
+              <p class="ficha-arquetipo">
+                <span class="ficha-punto" aria-hidden="true"></span>Rejilla de minijuegos
+              </p>
+              <p class="ficha-frase">Editor donde se construyen juegos educativos 3D. Developer principal durante 7 años.</p>
+              <div class="ficha-porque">
+                <h4 class="ficha-subtitulo">Por qué importa</h4>
+                <p>576 commits en 7 años. No construí una pantalla: construí la herramienta con la que se construyen las pantallas. En 2023 creé el `CODEOWNERS` del repo, que convirtió una barra de calidad deadvice en algo exigible.</p>
+              </div>
+              <div class="ficha-etapas">
+                <h4 class="ficha-subtitulo">El camino hasta aquí</h4>
+                <ol class="ficha-lista-etapas">
+                  
+              <li class="ficha-etapa">
+                <span class="ficha-etapa-nombre">Prototipo</span>
+                <span class="ficha-etapa-titulo">Un lienzo 2D con objetos 3D detrás</span>
+                <span class="ficha-etapa-detalle">Konva para la interacción, y una escena WebGL detrás. Es el mismo problema del editor de Undo/Redo y de la serialización de escena.</span>
+              </li>
+              <li class="ficha-etapa ficha-etapa-clave">
+                <span class="ficha-etapa-nombre">Plataforma</span>
+                <span class="ficha-etapa-titulo">576 commits en 7 años</span>
+                <span class="ficha-etapa-detalle">El editor es el producto. Lo que otros equipos construyen encima de él es lo que hay que mantener compatible.</span>
+              </li>
+              <li class="ficha-etapa ficha-etapa-clave">
+                <span class="ficha-etapa-nombre">Operación</span>
+                <span class="ficha-etapa-titulo">La barra de calidad, exigible</span>
+                <span class="ficha-etapa-detalle">El `CODEOWNERS` que creé en 2023 convirtió la revisión en un proceso con responsable, no en una sugerencia.</span>
+              </li>
+                </ol>
+              </div>
+              <ul class="ficha-stack">
+              <li>Vue 3</li>
+              <li>Konva</li>
+              <li>Vuex</li>
+            </ul>
+              <div class="ficha-enlaces">
+                
+              </div>
+            </article>
+
+            <article class="ficha" id="ficha-runtime-webgl" data-archivo="runtime-webgl" style="--color-asset: #7fb4f0">
+              <header class="ficha-cabecera">
+                <h3 class="ficha-titulo">Runtime WebGL</h3>
+                
+              </header>
+              <p class="ficha-arquetipo">
+                <span class="ficha-punto" aria-hidden="true"></span>Nube de puntos
+              </p>
+              <p class="ficha-frase">Runtime que ejecuta en el navegador lo que se diseña en el editor. Partes de él son suyas.</p>
+              <div class="ficha-porque">
+                <h4 class="ficha-subtitulo">Por qué importa</h4>
+                <p>Escena con undo/redo, post-procesado, light probes y navmesh, y distribuida como librería de componentes publicada. Es la otra mitad del producto: sabe los dos lados del contrato, el que dibuja y el que dibuja.</p>
+              </div>
+              <div class="ficha-etapas">
+                <h4 class="ficha-subtitulo">El camino hasta aquí</h4>
+                <ol class="ficha-lista-etapas">
+                  
+              <li class="ficha-etapa">
+                <span class="ficha-etapa-nombre">Plataforma</span>
+                <span class="ficha-etapa-titulo">Una librería de componentes, no un script</span>
+                <span class="ficha-etapa-detalle">Se consume desde otros equipos. Cambiar su API es una decisión de versionado, igual que en el backend.</span>
+              </li>
+              <li class="ficha-etapa">
+                <span class="ficha-etapa-nombre">Operación</span>
+                <span class="ficha-etapa-titulo">Rendimiento en el navegador real</span>
+                <span class="ficha-etapa-detalle">Post-procesado, light probes y navmesh tienen que ir a 60 fps en la máquina del usuario, no en el portátil del equipo.</span>
+              </li>
+                </ol>
+              </div>
+              <ul class="ficha-stack">
+              <li>React 19</li>
+              <li>Three.js</li>
+              <li>React Three Fiber</li>
+              <li>Zustand</li>
+            </ul>
+              <div class="ficha-enlaces">
+                
+              </div>
+            </article>
+
+            <article class="ficha" id="ficha-ia-conversacional" data-archivo="ia-conversacional" style="--color-asset: #8fa8f0">
+              <header class="ficha-cabecera">
+                <h3 class="ficha-titulo">Línea de IA conversacional</h3>
+                
+              </header>
+              <p class="ficha-arquetipo">
+                <span class="ficha-punto" aria-hidden="true"></span>Ondas de voz
+              </p>
+              <p class="ficha-frase">NPCs y mentores de voz en tiempo real, en producción. Lidera esta línea desde 2025.</p>
+              <div class="ficha-porque">
+                <h4 class="ficha-subtitulo">Por qué importa</h4>
+                <p>Servidor de agentes en FastAPI (async, streaming, WebSockets), RAG sobre Milvus, caché de voz en Elixir/Phoenix y agentes de test con Playwright. 752 commits en 2026, su año más productivo. Y la regla que lo sostiene: <strong>cada dependencia externa detrás de una interfaz, para que el servicio degrade en vez de caer</strong>.</p>
+              </div>
+              <div class="ficha-etapas">
+                <h4 class="ficha-subtitulo">El camino hasta aquí</h4>
+                <ol class="ficha-lista-etapas">
+                  
+              <li class="ficha-etapa">
+                <span class="ficha-etapa-nombre">Idea</span>
+                <span class="ficha-etapa-titulo">Un NPC que responde en milisegundos</span>
+                <span class="ficha-etapa-detalle">La conversación tiene que ir en las dos direcciones: voz que entra, voz que sale, con el turno bien detectado.</span>
+              </li>
+              <li class="ficha-etapa">
+                <span class="ficha-etapa-nombre">Prototipo</span>
+                <span class="ficha-etapa-titulo">RAG sobre Milvus</span>
+                <span class="ficha-etapa-detalle">Recuperación vectorial para que el mentor de voz sepa de qué habla. El almacén vectorial es una dependencia más, y se trata como tal.</span>
+              </li>
+              <li class="ficha-etapa ficha-etapa-clave">
+                <span class="ficha-etapa-nombre">Plataforma</span>
+                <span class="ficha-etapa-titulo">Degradar en vez de caer</span>
+                <span class="ficha-etapa-detalle">Si el vector store o un proveedor de modelos no están, el servicio sigue respondiendo con menos. Los agentes de test con Playwright ejercitan los flujos de extremo a extremo.</span>
+              </li>
+              <li class="ficha-etapa">
+                <span class="ficha-etapa-nombre">Operación</span>
+                <span class="ficha-etapa-titulo">752 commits en 2026</span>
+                <span class="ficha-etapa-detalle">Su año más productivo, y el primero en que el producto de IA pasó de ser un experimento a estar en producción.</span>
+              </li>
+                </ol>
+              </div>
+              <ul class="ficha-stack">
+              <li>FastAPI</li>
+              <li>LiveKit</li>
+              <li>Milvus</li>
+              <li>Elixir</li>
+              <li>Phoenix</li>
+              <li>Playwright</li>
+            </ul>
+              <div class="ficha-enlaces">
+                
+              </div>
+            </article>
+
+            <article class="ficha" id="ficha-api-plataforma" data-archivo="api-plataforma" style="--color-asset: #d08fc0">
+              <header class="ficha-cabecera">
+                <h3 class="ficha-titulo">Contratos de API a escala</h3>
+                
+              </header>
+              <p class="ficha-arquetipo">
+                <span class="ficha-punto" aria-hidden="true"></span>Línea de hitos
+              </p>
+              <p class="ficha-frase">El servicio de definición de juegos: la API contra la que se construyen todas las herramientas internas y el runtime.</p>
+              <div class="ficha-porque">
+                <h4 class="ficha-subtitulo">Por qué importa</h4>
+                <p><strong>401 commits en siete años y sigue siendo la API de registro.</strong> Por eso cada cambio es una decisión de versionado con compatibilidad hacia atrás, no un refactor. Y en esa plataforma de ~200M de usuarios mensuales, cada decisión tiene miles de clientes detrás.</p>
+              </div>
+              <div class="ficha-etapas">
+                <h4 class="ficha-subtitulo">El camino hasta aquí</h4>
+                <ol class="ficha-lista-etapas">
+                  
+              <li class="ficha-etapa ficha-etapa-clave">
+                <span class="ficha-etapa-nombre">Plataforma</span>
+                <span class="ficha-etapa-titulo">401 commits, siete años, y sigue siendo la API de registro</span>
+                <span class="ficha-etapa-detalle">Miles de consumidores internos construidos contra ese contrato. &quot;De qué depende qué&quot; se resuelve aquí, no en un documento.</span>
+              </li>
+              <li class="ficha-etapa ficha-etapa-clave">
+                <span class="ficha-etapa-nombre">Operación</span>
+                <span class="ficha-etapa-titulo">Un API es un contrato, y el que lo opera también es usuario</span>
+                <span class="ficha-etapa-detalle">Es lo que aprendí en diez años de IBM security y pre-sales: un contrato que cambia sin avisar rompe a gente que no estaba en la sala. La plataforma de i18n (145 commits) y los endpoints de BI viven en el mismo sistema.</span>
+              </li>
+                </ol>
+              </div>
+              <ul class="ficha-stack">
+              <li>Node.js</li>
+              <li>TypeScript</li>
+              <li>Express</li>
+              <li>MongoDB</li>
+              <li>S3</li>
+            </ul>
+              <div class="ficha-enlaces">
+                
+              </div>
+            </article>
+
+            <article class="ficha" id="ficha-ibm" data-archivo="ibm" style="--color-asset: #9aa8c4">
+              <header class="ficha-cabecera">
+                <h3 class="ficha-titulo">Diez años de IBM security y pre-sales</h3>
+                
+              </header>
+              <p class="ficha-arquetipo">
+                <span class="ficha-punto" aria-hidden="true"></span>Línea de hitos
+              </p>
+              <p class="ficha-frase">Security Systems Engineer, formador oficial y IT Channel Specialist en el portfolio de IBM.</p>
+              <div class="ficha-porque">
+                <h4 class="ficha-subtitulo">Por qué importa</h4>
+                <p>Formador oficial de WebSphere 7, Tivoli Storage Manager y Acronis, con el laboratorio de formación bajo su responsabilidad. En 2013, parte del equipo de siete que recibió el mejor VAD de software de IBM España. Es donde aprendí que un API es un contrato y que quien opera lo que lanzas también es usuario.</p>
+              </div>
+              <div class="ficha-etapas">
+                <h4 class="ficha-subtitulo">El camino hasta aquí</h4>
+                <ol class="ficha-lista-etapas">
+                  
+              <li class="ficha-etapa">
+                <span class="ficha-etapa-nombre">Idea</span>
+                <span class="ficha-etapa-titulo">Entender el sistema antes de programarlo</span>
+                <span class="ficha-etapa-detalle">DB2, Web Application Server, Tivoli Identity Manager y conectores propios sobre LDAP y directorios corporativos.</span>
+              </li>
+              <li class="ficha-etapa ficha-etapa-clave">
+                <span class="ficha-etapa-nombre">Operación</span>
+                <span class="ficha-etapa-titulo">Enseñar y sostener el laboratorio</span>
+                <span class="ficha-etapa-detalle">Entorno, material y entrega. Enseñar obliga a entender lo que se enseña mejor que ninguna otra cosa.</span>
+              </li>
+                </ol>
+              </div>
+              <ul class="ficha-stack">
+              <li>IBM Cloud</li>
+              <li>WebSphere</li>
+              <li>Tivoli</li>
+              <li>DB2</li>
+            </ul>
+              <div class="ficha-enlaces">
+                
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- ============ Barra de estado ============ -->
+        <div class="editor-estado" id="editor-estado">
+          <p class="editor-estado-campo">
+            <span class="editor-estado-etiqueta">Modo</span>
+            <span class="editor-estado-valor" id="editor-estado-modo">Navegar</span>
+          </p>
+          <p class="editor-estado-campo">
+            <span class="editor-estado-etiqueta">Selección</span>
+            <span class="editor-estado-valor" id="editor-estado-seleccion">—</span>
+          </p>
+          <p class="editor-estado-campo editor-estado-atajos">
+            <span class="editor-estado-etiqueta">Atajos</span>
+            <span class="editor-estado-valor">
+              <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> volar ·
+              <kbd>F</kbd> encuadrar · <kbd>Esc</kbd> deseleccionar ·
+              <kbd>/</kbd> buscar · <kbd>?</kbd> ayuda
+            </span>
+          </p>
+          <button type="button" class="editor-ayuda-boton" id="editor-ayuda-boton" aria-expanded="false" aria-controls="editor-ayuda">
+            Atajos
+          </button>
+        </div>
+      </div>
+
+      <!-- ============ Ayuda de atajos (overlay) ============ -->
+      <div class="editor-ayuda" id="editor-ayuda" role="dialog" aria-modal="true" aria-labelledby="editor-ayuda-titulo" hidden>
+        <div class="editor-ayuda-caja">
+          <h2 class="editor-ayuda-titulo" id="editor-ayuda-titulo">Atajos de teclado</h2>
+          <dl class="editor-ayuda-lista">
+            <dt><kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd></dt>
+            <dd>Volar por el viewport</dd>
+            <dt><kbd>Q</kbd> <kbd>E</kbd></dt>
+            <dd>Bajar y subir el punto de mira</dd>
+            <dt><kbd>F</kbd></dt>
+            <dd>Encuadrar la selección</dd>
+            <dt><kbd>Esc</kbd></dt>
+            <dd>Deseleccionar y volver al plano general</dd>
+            <dt><kbd>/</kbd></dt>
+            <dd>Buscar en la jerarquía</dd>
+            <dt><kbd>↑</kbd> <kbd>↓</kbd> <kbd>Enter</kbd></dt>
+            <dd>Recorrer la jerarquía y seleccionar</dd>
+            <dt><kbd>?</kbd></dt>
+            <dd>Abrir y cerrar esta ayuda</dd>
+          </dl>
+          <p class="editor-ayuda-pie">
+            Con el ratón: arrastrar para orbitar, <kbd>Shift</kbd> + arrastrar para
+            desplazar, clic en un asset para seleccionarlo.
+          </p>
+          <button type="button" class="editor-ayuda-cerrar" data-cerrar>Cerrar</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Trayectoria ============ -->
+    <section class="seccion" id="trayectoria">
+      <h2>Trayectoria</h2>
+      <p class="seccion-intro">
+        El resumen, en cuatro bloques. Cada uno tiene su "por qué importa", que es
+        donde está la información que no se lee en un CV de una página.
+      </p>
+
+      <div class="bloques-trayectoria">
+        <article class="bloque">
+          <h3>El servicio de definición de juegos</h3>
+          <p>
+            La API contra la que se construyen todas las herramientas internas y el
+            runtime de la plataforma. <strong>401 commits en siete años y sigue siendo
+            la API de registro</strong>: por eso cada cambio es una decisión de
+            versionado con compatibilidad hacia atrás, no un refactor. Con una base de
+            ~200M de usuarios mensuales, cada decisión de contrato tiene miles de
+            clientes detrás.
+          </p>
+        </article>
+
+        <article class="bloque">
+          <h3>IA conversacional en producción</h3>
+          <p>
+            NPCs y mentores de voz en tiempo real: servidor de agentes en FastAPI
+            (async, streaming, WebSockets), RAG sobre Milvus, caché de voz en
+            Elixir/Phoenix y agentes de test con Playwright. 752 commits en 2026, su
+            año más productivo.
+          </p>
+          <p>
+            La regla que sostiene todo esto: <strong>cada dependencia externa detrás de
+            una interfaz, para que el servicio degrade en vez de caer</strong>. Cuando el
+            vector store o un proveedor no están, el servicio sigue respondiendo con
+            menos. En producción, degradar y caerse no son sinónimos.
+          </p>
+        </article>
+
+        <article class="bloque">
+          <h3>El editor de autoría 3D y el runtime WebGL</h3>
+          <p>
+            Developer principal del editor de autoría durante siete años
+            (<strong>576 commits</strong>), con Vue 3 y Konva. En 2023 creé el
+            <code>CODEOWNERS</code> del repositorio, que convirtió una barra de calidad
+            de opinión en algo exigible.
+          </p>
+          <p>
+            Del runtime WebGL (React 19, Three.js, React Three Fiber) soy dueño de
+            partes: escena con undo/redo, post-procesado, light probes y navmesh,
+            distribuida como librería de componentes publicada. Es la otra mitad del
+            producto: el editor es el que dibuja, el runtime es el que ejecuta.
+          </p>
+        </article>
+
+        <article class="bloque">
+          <h3>Diez años de IBM security y pre-sales</h3>
+          <p>
+            Security Systems Engineer sobre DB2, Web Application Server y Tivoli Identity
+            Manager, con conectores propios sobre LDAP y directorios corporativos. Luego
+            formador oficial de WebSphere 7, Tivoli Storage Manager y Acronis, con el
+            laboratorio de formación bajo mi responsabilidad.
+          </p>
+          <p>
+            En 2013 formé parte del equipo de siete que recibió el mejor VAD de software
+            de IBM España. Es la etapa que explica el resto: <strong>un API es un
+            contrato</strong>, y quien lo opera también es usuario. Más de 1.100 pull
+            requests revisados en 30+ repositorios y seis ecosistemas.
+          </p>
+        </article>
+      </div>
+
+      <details class="detalle-experiencia">
+        <summary>Ver el experiencia completa, año a año</summary>
+        <div class="linea-tiempo">
+          <div class="linea-item">
+            <p class="linea-periodo">2018 — hoy</p>
+            <p class="linea-puesto">Full Stack Engineer · Game Strategies (Gamelearn) · Madrid (remoto)</p>
+            <p class="linea-nota">Plataforma de juegos educativos 3D. Developer principal del editor de autoría (576 commits en 7 años), dueño de partes del runtime WebGL (327 commits), y desde 2025 responsable de la línea de IA conversacional (752 commits en 2026).</p>
+          </div>
+          <div class="linea-item">
+            <p class="linea-periodo">2017 — 2018</p>
+            <p class="linea-puesto">Front End Engineer · Adglow · Madrid</p>
+            <p class="linea-nota">Angular 2 y 5: subida y recorte de medios, operaciones en lote, edición de presupuestos y constructores de formularios.</p>
+          </div>
+          <div class="linea-item">
+            <p class="linea-periodo">2011 — 2017</p>
+            <p class="linea-puesto">IT Channel Specialist / Business Developer · GTI Software &amp; Networking (Neovalia) · Madrid</p>
+            <p class="linea-nota">Pre-sales, licencias y renovaciones del portfolio de IBM. Responsable del centro de certificación Pearson VUE de IBM España y formación técnica a partners y clientes empresariales. En 2013, parte del equipo de siete con el mejor VAD de software de IBM España.</p>
+          </div>
+          <div class="linea-item">
+            <p class="linea-periodo">2010 — 2011</p>
+            <p class="linea-puesto">Pre-Sales Systems Engineer · GTI Software &amp; Networking (Neovalia) · Madrid</p>
+            <p class="linea-nota">Formador oficial de WebSphere 7, Tivoli Storage Manager y Acronis. Responsable del laboratorio de formación: montaje del entorno, material y impartición.</p>
+          </div>
+          <div class="linea-item">
+            <p class="linea-periodo">2008 — 2010</p>
+            <p class="linea-puesto">Security Systems Engineer · Morse (hoy Logicalis) · Madrid</p>
+            <p class="linea-nota">Despliegues de DB2, Web Application Server y Tivoli Identity Manager; conectores propios sobre Tivoli Directory Integrator (LDAP y directorios corporativos); operaciones de seguridad.</p>
+          </div>
+          <div class="linea-item">
+            <p class="linea-periodo">2007 — 2008</p>
+            <p class="linea-puesto">Systems Engineer · Siemens · Madrid</p>
+            <p class="linea-nota">Despliegue y mantenimiento de servidores Windows, monitorización de Oracle sobre SAP R3, gestión de incidencias y documentación de operaciones.</p>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <!-- ============ Proyectos ============ -->
+    <section class="seccion" id="proyectos">
+      <h2>Proyectos</h2>
+      <p class="seccion-intro">
+        Once proyectos, cada uno con su "por qué importa". Un stack no dice por qué
+        un proyecto existe; la decisión que tomó alguien al construirlo, sí. Al final
+        de cada tarjeta tienes también el camino: las etapas por las que pasó, que es
+        lo que la escena 3D muestra.
+      </p>
+
+      <h3 class="subtitulo-seccion">Proyectos propios</h3>
+      <div class="rejilla-proyectos">
+
+      <article class="tarjeta" id="fotoverse" data-tipo="proyecto">
+        <header class="tarjeta-cabecera">
+          <h3 class="tarjeta-titulo">fotoverse</h3>
+          <span class="tarjeta-anio">2026</span>
+        </header>
+        <p class="tarjeta-frase">App de escritorio que recorre tu biblioteca de fotos y vídeos y te deja decidir qué duplicados sobran.</p>
+        <div class="tarjeta-porque">
+          <h4 class="subtitulo">Por qué importa</h4>
+          <p>Reimplementé el pHash a mano (~150 líneas de DCT 2D separable) en vez de usar una librería, porque las que existían estaban atadas a una versión incompatible del crate `image`. Reimplementar me daba control sobre el formato del hash — y me costó una tarde. Lo importante es la segunda decisión: el borrado va siempre a la papelera del sistema operativo, nunca es permanente. Una app que borra fotos de la gente tiene que poder equivocarse.</p>
+        </div>
+        <details class="tarjeta-etapas">
+          <summary>El camino hasta aquí (4 etapas)</summary>
+          <ol class="lista-etapas">
+            
+            <li class="etapa">
+              <span class="etapa-nombre">Idea</span>
+              <span class="etapa-titulo">Diez años de fotos y ninguna respuesta</span>
+              <span class="etapa-detalle">El problema no es &quot;buscar duplicados&quot;: es que el mismo `IMG_1234.jpg` está en tres carpetas y no sabes cuál es la buena.</span>
+            </li>
+            <li class="etapa">
+              <span class="etapa-nombre">Prototipo</span>
+              <span class="etapa-titulo">pHash propio, en Rust</span>
+              <span class="etapa-detalle">DCT 2D separable sobre 32×32 en escala de grises, bloque 8×8, umbral por mediana, 64 bits. Eligiendo implementarlo por criterio y no por tutorial: la librería `img_hash` usa una feature de nightly y ata su versión de `image`.</span>
+            </li>
+            <li class="etapa">
+              <span class="etapa-nombre">Plataforma</span>
+              <span class="etapa-titulo">Agrupar es O(n²), y eso hay que decirlo</span>
+              <span class="etapa-detalle">Union-Find con distancia de Hamming ≤ 10 y poda por salida temprana. El techo de 5.000 imágenes está nombrado en el código y el warning dice lo que va a pasar: cuando se supera, hace falta un BK-tree. Dejar el límite escrito es más honesto que ocultarlo.</span>
+            </li>
+            <li class="etapa">
+              <span class="etapa-nombre">Operación</span>
+              <span class="etapa-titulo">Borrar a la papelera, siempre</span>
+              <span class="etapa-detalle">El módulo se llama `papelera` y usa la crate `trash` de forma multiplataforma. Si el sistema no tiene papelera, el borrado falla y el fichero se queda. En ningún caso hay borrado permanente.</span>
+            </li>
+          </ol>
+        </details>
+        <ul class="lista-stack">
+            <li>Rust</li>
+            <li>Tauri 2</li>
+            <li>React 19</li>
+            <li>SQLite</li>
+          </ul>
+        <a class="enlace-repo" href="https://github.com/ahuertam/fotoverse" rel="noopener noreferrer">Código <span aria-hidden="true">↗</span><span class="visualmente-oculto"> (repositorio de fotoverse en GitHub)</span></a>
+      </article>
+
+      <article class="tarjeta" id="godkai-back" data-tipo="proyecto">
+        <header class="tarjeta-cabecera">
+          <h3 class="tarjeta-titulo">godKAI-back</h3>
+          <span class="tarjeta-anio">2026</span>
+        </header>
+        <p class="tarjeta-frase">Backend de agente conversacional en tiempo real, con voz y texto, de principio a fin.</p>
+        <div class="tarjeta-porque">
+          <h4 class="subtitulo">Por qué importa</h4>
+          <p>El valor de este proyecto no es que el agente hable: es que la cadena entera esté detrás de interfaces. Cada proveedor —vector store, cada modelo— se sustituye, así que el servicio degrada en vez de caerse. En producción, &quot;degradar&quot; y &quot;caerse&quot; no son sinónimos: uno es una molestia y el otro es una guardia.</p>
+        </div>
+        <details class="tarjeta-etapas">
+          <summary>El camino hasta aquí (3 etapas)</summary>
+          <ol class="lista-etapas">
+            
+            <li class="etapa">
+              <span class="etapa-nombre">Idea</span>
+              <span class="etapa-titulo">Hablar con un modelo en tiempo real</span>
+              <span class="etapa-detalle">La cadena STT → LLM → TTS tal y como la oyes en un producto, con detección de turnos y cancelación de ruido.</span>
+            </li>
+            <li class="etapa">
+              <span class="etapa-nombre">Prototipo</span>
+              <span class="etapa-titulo">Que cada pieza sea intercambiable</span>
+              <span class="etapa-detalle">Deepgram, Gemini, OpenAI, Ollama: se configuran por `config.json`. Cambiar de modelo es cambiar una línea, no reescribir el pipeline.</span>
+            </li>
+            <li class="etapa">
+              <span class="etapa-nombre">Plataforma</span>
+              <span class="etapa-titulo">Cada dependencia externa detrás de una interfaz</span>
+              <span class="etapa-detalle">Si el vector store o un proveedor de modelos se cae, el servicio sigue respondiendo con menos. Esta es la misma regla que aplico en el servicio de voz de producción.</span>
+            </li>
+          </ol>
+        </details>
+        <ul class="lista-stack">
+            <li>Python</li>
+            <li>LiveKit</li>
+            <li>STT</li>
+            <li>LLM</li>
+            <li>TTS</li>
+          </ul>
+        <a class="enlace-repo" href="https://github.com/ahuertam/godkAI-back" rel="noopener noreferrer">Código <span aria-hidden="true">↗</span><span class="visualmente-oculto"> (repositorio de godKAI-back en GitHub)</span></a>
+      </article>
+
+      <article class="tarjeta" id="imagetron" data-tipo="proyecto">
+        <header class="tarjeta-cabecera">
+          <h3 class="tarjeta-titulo">ImageTron</h3>
+          <span class="tarjeta-anio">2026</span>
+        </header>
+        <p class="tarjeta-frase">Convierte una imagen en un mundo 3D navegable, con su objeto en 3D, en el navegador.</p>
+        <div class="tarjeta-porque">
+          <h4 class="subtitulo">Por qué importa</h4>
+          <p>El punto interesante no es generar el 3D: es hacerlo en paralelo y que el navegador lo monte sin bloquearse. El progreso llega por SSE y la escena React Three Fiber se monta sobre un Gaussian Splat y un `.glb` que llegan por separado.</p>
+        </div>
+        <details class="tarjeta-etapas">
+          <summary>El camino hasta aquí (3 etapas)</summary>
+          <ol class="lista-etapas">
+            
+            <li class="etapa">
+              <span class="etapa-nombre">Idea</span>
+              <span class="etapa-titulo">Una foto, un lugar</span>
+              <span class="etapa-detalle">Subes una imagen y obtienes un entorno navegable generado por World Labs, más el modelo 3D del objeto.</span>
+            </li>
+            <li class="etapa">
+              <span class="etapa-nombre">Prototipo</span>
+              <span class="etapa-titulo">Dos jobs en paralelo</span>
+              <span class="etapa-detalle">El entorno y el objeto se generan a la vez. Uno puede fallar sin tumbar al otro, y el GIF de la demo lo enseña en rojo.</span>
+            </li>
+            <li class="etapa">
+              <span class="etapa-nombre">Plataforma</span>
+              <span class="etapa-titulo">Caché por hash y límites de seguridad</span>
+              <span class="etapa-detalle">El resultado se cachea por hash de la imagen de entrada, para no pagar dos veces la misma generación. Los límites de tamaño y los jobs se documentan por escrito.</span>
+            </li>
+          </ol>
+        </details>
+        <ul class="lista-stack">
+            <li>TypeScript</li>
+            <li>React 19</li>
+            <li>R3F</li>
+            <li>SSE</li>
+          </ul>
+        <a class="enlace-repo" href="https://github.com/ahuertam/imageTron" rel="noopener noreferrer">Código <span aria-hidden="true">↗</span><span class="visualmente-oculto"> (repositorio de ImageTron en GitHub)</span></a>
+      </article>
+
+      <article class="tarjeta" id="three-roads" data-tipo="proyecto">
+        <header class="tarjeta-cabecera">
+          <h3 class="tarjeta-titulo">Three Roads</h3>
+          <span class="tarjeta-anio">2026</span>
+        </header>
+        <p class="tarjeta-frase">Carrera 3D en el navegador, con 21 niveles y pista procedural.</p>
+        <div class="tarjeta-porque">
+          <h4 class="subtitulo">Por qué importa</h4>
+          <p>El ejercicio de cerrar el círculo: física, ECS propio, estado reactivo y render 3D, todo en una web que se abre con un enlace. No es un hobby: es el terreno donde se pratica el runtime WebGL que luego se usa en producto.</p>
+        </div>
+        <details class="tarjeta-etapas">
+          <summary>El camino hasta aquí (3 etapas)</summary>
+          <ol class="lista-etapas">
+            
+            <li class="etapa">
+              <span class="etapa-nombre">Idea</span>
+              <span class="etapa-titulo">Un juego que no necesita instalar nada</span>
+              <span class="etapa-detalle">Se juega en el navegador y se comparte por URL. Nada de descarga, nada de cuenta.</span>
+            </li>
+            <li class="etapa">
+              <span class="etapa-nombre">Prototipo</span>
+              <span class="etapa-titulo">ECS propio en vez de un framework</span>
+              <span class="etapa-detalle">Un sistema de entidades-componentes propio para la lógica, y Zustand para el estado de la interfaz. Separar las dos cosas es lo que permite que el render no se entere de las reglas.</span>
+            </li>
+            <li class="etapa">
+              <span class="etapa-nombre">Plataforma</span>
+              <span class="etapa-titulo">21 niveles y pista procedural</span>
+              <span class="etapa-detalle">La pista se genera por código, así que añadir niveles es contenido, no trabajo de arte.</span>
+            </li>
+          </ol>
+        </details>
+        <ul class="lista-stack">
+            <li>React Three Fiber</li>
+            <li>Three.js</li>
+            <li>Cannon.js</li>
+            <li>Zustand</li>
+          </ul>
+        <a class="enlace-repo" href="https://github.com/ahuertam/three_roads" rel="noopener noreferrer">Código <span aria-hidden="true">↗</span><span class="visualmente-oculto"> (repositorio de Three Roads en GitHub)</span></a>
+          <a class="enlace-repo" href="https://ahuertam.github.io/three_roads/" rel="noopener noreferrer">En vivo <span aria-hidden="true">↗</span><span class="visualmente-oculto"> (demostración de Three Roads)</span></a>
+      </article>
+
+      <article class="tarjeta" id="mai" data-tipo="proyecto">
+        <header class="tarjeta-cabecera">
+          <h3 class="tarjeta-titulo">MAI</h3>
+          <span class="tarjeta-anio">2026</span>
+        </header>
+        <p class="tarjeta-frase">Agente de IA local que planifica y ejecuta tareas en la terminal.</p>
+        <div class="tarjeta-porque">
+          <h4 class="subtitulo">Por qué importa</h4>
+          <p>El detalle que importa es dónde vive: **en tu máquina, con Ollama, sin cuenta ni API key**. Es un agente que planifica antes de actuar, y que te da el feedback en la propia consola, sin interfaz de por medio.</p>
+        </div>
+        <details class="tarjeta-etapas">
+          <summary>El camino hasta aquí (3 etapas)</summary>
+          <ol class="lista-etapas">
+            
+            <li class="etapa">
+              <span class="etapa-nombre">Idea</span>
+              <span class="etapa-titulo">Un plan, no una lista de comandos</span>
+              <span class="etapa-detalle">El modelo genera un plan ejecutable y luego lo ejecuta, informando paso a paso.</span>
+            </li>
+            <li class="etapa">
+              <span class="etapa-nombre">Prototipo</span>
+              <span class="etapa-titulo">Local y sin credenciales</span>
+              <span class="etapa-detalle">Ollama en local. La instalación se resuelve en un script, con detección del sistema operativo y del propio Ollama.</span>
+            </li>
+            <li class="etapa">
+              <span class="etapa-nombre">Plataforma</span>
+              <span class="etapa-titulo">Extensible hacia voz</span>
+              <span class="etapa-detalle">La arquitectura ya está pensada para poder añadir LiveKit y pasar a interacción por voz sin rehacer el agente.</span>
+            </li>
+          </ol>
+        </details>
+        <ul class="lista-stack">
+            <li>Python</li>
+            <li>Ollama</li>
+          </ul>
+        <a class="enlace-repo" href="https://github.com/ahuertam/mai" rel="noopener noreferrer">Código <span aria-hidden="true">↗</span><span class="visualmente-oculto"> (repositorio de MAI en GitHub)</span></a>
+      </article>
+
+      <article class="tarjeta" id="frodo" data-tipo="proyecto">
+        <header class="tarjeta-cabecera">
+          <h3 class="tarjeta-titulo">Frodo</h3>
+          <span class="tarjeta-anio">2026</span>
+        </header>
+        <p class="tarjeta-frase">Toolbox de 11 agentes Python autocontenidos.</p>
+        <div class="tarjeta-porque">
+          <h4 class="subtitulo">Por qué importa</h4>
+          <p>Cada agente vive en su carpeta, con su `requirements.txt`, y funciona solo. No hay framework ni runtime compartido. Cuando un agente se rompe, no arrastra a los otros diez — que es exactamente el comportamiento que busqué en los servicios de IA de producción.</p>
+        </div>
+        <details class="tarjeta-etapas">
+          <summary>El camino hasta aquí (3 etapas)</summary>
+          <ol class="lista-etapas">
+            
+            <li class="etapa">
+              <span class="etapa-nombre">Idea</span>
+              <span class="etapa-titulo">Un problema, un script</span>
+              <span class="etapa-detalle">Ilustrador, cartógrafo de mundos, narrador... herramientas pequeñas que resuelven una cosa concreta.</span>
+            </li>
+            <li class="etapa">
+              <span class="etapa-nombre">Prototipo</span>
+              <span class="etapa-titulo">El LLM como emisor de datos estructurados</span>
+              <span class="etapa-detalle">En el cartógrafo, el modelo no escribe prosa: diseña la estructura lógica del mapa con un esquema tipado y la emite en JSON. Contrato estricto y cadena de respaldo.</span>
+            </li>
+            <li class="etapa">
+              <span class="etapa-nombre">Plataforma</span>
+              <span class="etapa-titulo">Aislamiento total entre agentes</span>
+              <span class="etapa-detalle">Sin runtime compartido, un fallo en un agente no afecta a los demás. El mismo criterio que en el servicio de IA de producción.</span>
+            </li>
+          </ol>
+        </details>
+        <ul class="lista-stack">
+            <li>Python</li>
+          </ul>
+        <a class="enlace-repo" href="https://github.com/ahuertam/frodo" rel="noopener noreferrer">Código <span aria-hidden="true">↗</span><span class="visualmente-oculto"> (repositorio de Frodo en GitHub)</span></a>
+      </article>
+
+      <article class="tarjeta" id="edutika" data-tipo="proyecto">
+        <header class="tarjeta-cabecera">
+          <h3 class="tarjeta-titulo">Edutika</h3>
+          <span class="tarjeta-anio">2026</span>
+        </header>
+        <p class="tarjeta-frase">43 minijuegos educativos de matemáticas, lengua y conocimiento, en español y gratis.</p>
+        <div class="tarjeta-porque">
+          <h4 class="subtitulo">Por qué importa</h4>
+          <p>Está en **edutika.es**, vivo y público, y funciona sin cuenta ni descargas. Cada juego se carga por separado cuando lo abres, no los 43 de golpe, y el catálogo de juegos vive en un único fichero de configuración. Es un producto para niños que se usa en un aula real, y por eso cada juego es una pantalla y una mecánicas, no una demo.</p>
+        </div>
+        <details class="tarjeta-etapas">
+          <summary>El camino hasta aquí (4 etapas)</summary>
+          <ol class="lista-etapas">
+            
+            <li class="etapa">
+              <span class="etapa-nombre">Idea</span>
+              <span class="etapa-titulo">Practicar sin cuentas ni descargas</span>
+              <span class="etapa-detalle">Ni registro, ni descargas, ni paywall. Se abre y se juega. La decisión elimina la fricción justo donde el usuario es un niño.</span>
+            </li>
+            <li class="etapa">
+              <span class="etapa-nombre">Prototipo</span>
+              <span class="etapa-titulo">Un juego = una pantalla y una mecánica</span>
+              <span class="etapa-detalle">El mismo juego puede aparecer en varias categorías. La lógica vive en la configuración, no duplicada en cada componente.</span>
+            </li>
+            <li class="etapa">
+              <span class="etapa-nombre">Plataforma</span>
+              <span class="etapa-titulo">Carga bajo demanda y progreso local</span>
+              <span class="etapa-detalle">Los 43 juegos no se descargan de golpe: cada uno baja su trozo al abrirlo. Un catálogo único en `src/config/games.js` gobierna navegación, carga y progreso.</span>
+            </li>
+            <li class="etapa">
+              <span class="etapa-nombre">Operación</span>
+              <span class="etapa-titulo">En producción y en uso</span>
+              <span class="etapa-detalle">Publicada en edutika.es. Un producto de juguete que sale de las once de la noche y lo usan niños de verdad.</span>
+            </li>
+          </ol>
+        </details>
+        <ul class="lista-stack">
+            <li>JavaScript</li>
+            <li>React</li>
+            <li>Phaser</li>
+            <li>Matter.js</li>
+          </ul>
+        <a class="enlace-repo" href="https://github.com/ahuertam/education" rel="noopener noreferrer">Código <span aria-hidden="true">↗</span><span class="visualmente-oculto"> (repositorio de Edutika en GitHub)</span></a>
+          <a class="enlace-repo" href="https://edutika.es" rel="noopener noreferrer">En vivo <span aria-hidden="true">↗</span><span class="visualmente-oculto"> (demostración de Edutika)</span></a>
+      </article>
+
+      <article class="tarjeta" id="akai25" data-tipo="proyecto">
+        <header class="tarjeta-cabecera">
+          <h3 class="tarjeta-titulo">AKAI25 Web DAW</h3>
+          <span class="tarjeta-anio">2026</span>
+        </header>
+        <p class="tarjeta-frase">Estación de trabajo musical en el navegador, conectada a un teclado Akai MPK25.</p>
+        <div class="tarjeta-porque">
+          <h4 class="subtitulo">Por qué importa</h4>
+          <p>Puente entre hardware MIDI y navegador con latencia mínima: Web MIDI API y Tone.js, sin drivers ni instalación. Y un detalle de ergonomía: funciona igual sin el teclado conectado — hay un teclado virtual en pantalla, así que se puede probar en cualquier navegador y la demo no depende de tener el aparato a mano.</p>
+        </div>
+        <details class="tarjeta-etapas">
+          <summary>El camino hasta aquí (3 etapas)</summary>
+          <ol class="lista-etapas">
+            
+            <li class="etapa">
+              <span class="etapa-nombre">Idea</span>
+              <span class="etapa-titulo">Tocar sin instalar nada</span>
+              <span class="etapa-detalle">El MKP25 se convierte en un instrumento virtual en una pestaña del navegador.</span>
+            </li>
+            <li class="etapa">
+              <span class="etapa-nombre">Prototipo</span>
+              <span class="etapa-titulo">Latencia por debajo de lo que se nota</span>
+              <span class="etapa-detalle">Web MIDI API con Tone.js: el evento MIDI llega al sintetizador sin pasar por un plugin nativo.</span>
+            </li>
+            <li class="etapa">
+              <span class="etapa-nombre">Plataforma</span>
+              <span class="etapa-titulo">Grabas, escuchas y descargas</span>
+              <span class="etapa-detalle">Persistencia de las grabaciones y exportación a fichero. Lo mínimo para que una idea musical no se pierda al cerrar la pestaña.</span>
+            </li>
+          </ol>
+        </details>
+        <ul class="lista-stack">
+            <li>React</li>
+            <li>Tone.js</li>
+            <li>Web MIDI API</li>
+          </ul>
+        <a class="enlace-repo" href="https://github.com/ahuertam/akai25" rel="noopener noreferrer">Código <span aria-hidden="true">↗</span><span class="visualmente-oculto"> (repositorio de AKAI25 Web DAW en GitHub)</span></a>
+          <a class="enlace-repo" href="https://ahuertam.github.io/akai25/" rel="noopener noreferrer">En vivo <span aria-hidden="true">↗</span><span class="visualmente-oculto"> (demostración de AKAI25 Web DAW)</span></a>
+      </article>
+
+      <article class="tarjeta" id="roadrol" data-tipo="proyecto">
+        <header class="tarjeta-cabecera">
+          <h3 class="tarjeta-titulo">RoadRol</h3>
+          <span class="tarjeta-anio">2026</span>
+        </header>
+        <p class="tarjeta-frase">PWA móvil para dirigir partidas de rol desde el teléfono.</p>
+        <div class="tarjeta-porque">
+          <h4 class="subtitulo">Por qué importa</h4>
+          <p>Pensado para el escenario real: el master va en un viaje largo, con el móvil en la mano y sin cobertura decente. Sin cuentas, sin backend y sin API keys: todo local en el dispositivo, y la partida se comparte por enlace. Es la decisión de arquitectura que hace que la app funcione donde la red no.</p>
+        </div>
+        <details class="tarjeta-etapas">
+          <summary>El camino hasta aquí (3 etapas)</summary>
+          <ol class="lista-etapas">
+            
+            <li class="etapa">
+              <span class="etapa-nombre">Idea</span>
+              <span class="etapa-titulo">La partida ocurre en la mesa, pero el master está en la carretera</span>
+              <span class="etapa-detalle">Generar misiones y encuentros desde packs, tirar dados y editar stats en caliente.</span>
+            </li>
+            <li class="etapa">
+              <span class="etapa-nombre">Prototipo</span>
+              <span class="etapa-titulo">Mobile-first de verdad</span>
+              <span class="etapa-detalle">La interfaz se diseñó para el pulgar y para jugar con una sola mano, no para ser un móvil con un escritorio encogido.</span>
+            </li>
+            <li class="etapa">
+              <span class="etapa-nombre">Plataforma</span>
+              <span class="etapa-titulo">Cero backend, cero cuentas</span>
+              <span class="etapa-detalle">Todo local en el dispositivo y la partida se comparte por enlace. Sin API keys ni infraestructura que mantener.</span>
+            </li>
+          </ol>
+        </details>
+        <ul class="lista-stack">
+            <li>JavaScript</li>
+            <li>PWA</li>
+            <li>Web App Manifest</li>
+          </ul>
+        <a class="enlace-repo" href="https://github.com/ahuertam/roadRol" rel="noopener noreferrer">Código <span aria-hidden="true">↗</span><span class="visualmente-oculto"> (repositorio de RoadRol en GitHub)</span></a>
+      </article>
+
+      <article class="tarjeta" id="freeaiapis" data-tipo="proyecto">
+        <header class="tarjeta-cabecera">
+          <h3 class="tarjeta-titulo">freeAIApis</h3>
+          <span class="tarjeta-anio">2026</span>
+        </header>
+        <p class="tarjeta-frase">Directorio curado de 32 APIs de IA gratuitas.</p>
+        <div class="tarjeta-porque">
+          <h4 class="subtitulo">Por qué importa</h4>
+          <p>Mano de obra mínima y un criterio claro: la mayoría de estos servicios ya no son gratis de verdad, o lo fueron hasta agosto de 2025 y ahora dejan de serlo. Separar las que siguen siendo gratuitas de las que ya no, y decirlo, es más útil que una lista larga sin fechas.</p>
+        </div>
+        <details class="tarjeta-etapas">
+          <summary>El camino hasta aquí (3 etapas)</summary>
+          <ol class="lista-etapas">
+            
+            <li class="etapa">
+              <span class="etapa-nombre">Idea</span>
+              <span class="etapa-titulo">Encontrar qué sigue siendo gratis</span>
+              <span class="etapa-detalle">Un problema pequeño con una respuesta que cambia cada pocos meses.</span>
+            </li>
+            <li class="etapa">
+              <span class="etapa-nombre">Prototipo</span>
+              <span class="etapa-titulo">HTML y nada más</span>
+              <span class="etapa-detalle">Un directorio no necesita un framework. Sin dependencias, sin build, sin mantenimiento.</span>
+            </li>
+            <li class="etapa">
+              <span class="etapa-nombre">Operación</span>
+              <span class="etapa-titulo">Revisado, no congelado</span>
+              <span class="etapa-detalle">Cada entrada lleva la fecha en que se comprobó. Un directorio sin fechas es un directorio de mentiras en tres meses.</span>
+            </li>
+          </ol>
+        </details>
+        <ul class="lista-stack">
+            <li>HTML</li>
+          </ul>
+        <a class="enlace-repo" href="https://github.com/ahuertam/freeAIApis" rel="noopener noreferrer">Código <span aria-hidden="true">↗</span><span class="visualmente-oculto"> (repositorio de freeAIApis en GitHub)</span></a>
+      </article>
+
+      <article class="tarjeta" id="ai-radar" data-tipo="proyecto">
+        <header class="tarjeta-cabecera">
+          <h3 class="tarjeta-titulo">AI Radar</h3>
+          <span class="tarjeta-anio">2026</span>
+        </header>
+        <p class="tarjeta-frase">Rankings de modelos de IA por categoría.</p>
+        <div class="tarjeta-porque">
+          <h4 class="subtitulo">Por qué importa</h4>
+          <p>Comparar modelos por *categoría de tarea* y no por una puntuación global. El modelo mejor del ranking global rara vez es el mejor para tu tarea concreta, y un ranking que no distingue eso no sirve para decidir.</p>
+        </div>
+        <details class="tarjeta-etapas">
+          <summary>El camino hasta aquí (2 etapas)</summary>
+          <ol class="lista-etapas">
+            
+            <li class="etapa">
+              <span class="etapa-nombre">Idea</span>
+              <span class="etapa-titulo">Un ranking único no sirve para decidir</span>
+              <span class="etapa-detalle">El leaderboard general mezcla tareas incompatibles. Por categoría, el orden cambia por completo.</span>
+            </li>
+            <li class="etapa">
+              <span class="etapa-nombre">Prototipo</span>
+              <span class="etapa-titulo">HTML, CSS y un poco de JS</span>
+              <span class="etapa-detalle">Sin framework y sin build. Para una tabla con filtros, es más que suficiente.</span>
+            </li>
+          </ol>
+        </details>
+        <ul class="lista-stack">
+            <li>HTML</li>
+          </ul>
+        <a class="enlace-repo" href="https://github.com/ahuertam/ai-radar" rel="noopener noreferrer">Código <span aria-hidden="true">↗</span><span class="visualmente-oculto"> (repositorio de AI Radar en GitHub)</span></a>
+      </article>
+      </div>
+
+      <h3 class="subtitulo-seccion">Trabajo profesional</h3>
+      <p class="seccion-intro seccion-intro-menor">
+        Esto no es un repositorio, pero es la mayor parte del CV. Los mismos bloques,
+        con el mismo criterio.
+      </p>
+      <div class="rejilla-proyectos">
+
+      <article class="tarjeta" id="editor-autoria" data-tipo="trabajo">
+        <header class="tarjeta-cabecera">
+          <h3 class="tarjeta-titulo">Editor de autoría 3D</h3>
+          
+        </header>
+        <p class="tarjeta-frase">Editor donde se construyen juegos educativos 3D. Developer principal durante 7 años.</p>
+        <div class="tarjeta-porque">
+          <h4 class="subtitulo">Por qué importa</h4>
+          <p>576 commits en 7 años. No construí una pantalla: construí la herramienta con la que se construyen las pantallas. En 2023 creé el `CODEOWNERS` del repo, que convirtió una barra de calidad deadvice en algo exigible.</p>
+        </div>
+        <details class="tarjeta-etapas">
+          <summary>El camino hasta aquí (3 etapas)</summary>
+          <ol class="lista-etapas">
+            
+            <li class="etapa">
+              <span class="etapa-nombre">Prototipo</span>
+              <span class="etapa-titulo">Un lienzo 2D con objetos 3D detrás</span>
+              <span class="etapa-detalle">Konva para la interacción, y una escena WebGL detrás. Es el mismo problema del editor de Undo/Redo y de la serialización de escena.</span>
+            </li>
+            <li class="etapa">
+              <span class="etapa-nombre">Plataforma</span>
+              <span class="etapa-titulo">576 commits en 7 años</span>
+              <span class="etapa-detalle">El editor es el producto. Lo que otros equipos construyen encima de él es lo que hay que mantener compatible.</span>
+            </li>
+            <li class="etapa">
+              <span class="etapa-nombre">Operación</span>
+              <span class="etapa-titulo">La barra de calidad, exigible</span>
+              <span class="etapa-detalle">El `CODEOWNERS` que creé en 2023 convirtió la revisión en un proceso con responsable, no en una sugerencia.</span>
+            </li>
+          </ol>
+        </details>
+        <ul class="lista-stack">
+            <li>Vue 3</li>
+            <li>Konva</li>
+            <li>Vuex</li>
+          </ul>
+        
+      </article>
+
+      <article class="tarjeta" id="runtime-webgl" data-tipo="trabajo">
+        <header class="tarjeta-cabecera">
+          <h3 class="tarjeta-titulo">Runtime WebGL</h3>
+          
+        </header>
+        <p class="tarjeta-frase">Runtime que ejecuta en el navegador lo que se diseña en el editor. Partes de él son suyas.</p>
+        <div class="tarjeta-porque">
+          <h4 class="subtitulo">Por qué importa</h4>
+          <p>Escena con undo/redo, post-procesado, light probes y navmesh, y distribuida como librería de componentes publicada. Es la otra mitad del producto: sabe los dos lados del contrato, el que dibuja y el que dibuja.</p>
+        </div>
+        <details class="tarjeta-etapas">
+          <summary>El camino hasta aquí (2 etapas)</summary>
+          <ol class="lista-etapas">
+            
+            <li class="etapa">
+              <span class="etapa-nombre">Plataforma</span>
+              <span class="etapa-titulo">Una librería de componentes, no un script</span>
+              <span class="etapa-detalle">Se consume desde otros equipos. Cambiar su API es una decisión de versionado, igual que en el backend.</span>
+            </li>
+            <li class="etapa">
+              <span class="etapa-nombre">Operación</span>
+              <span class="etapa-titulo">Rendimiento en el navegador real</span>
+              <span class="etapa-detalle">Post-procesado, light probes y navmesh tienen que ir a 60 fps en la máquina del usuario, no en el portátil del equipo.</span>
+            </li>
+          </ol>
+        </details>
+        <ul class="lista-stack">
+            <li>React 19</li>
+            <li>Three.js</li>
+            <li>React Three Fiber</li>
+            <li>Zustand</li>
+          </ul>
+        
+      </article>
+
+      <article class="tarjeta" id="ia-conversacional" data-tipo="trabajo">
+        <header class="tarjeta-cabecera">
+          <h3 class="tarjeta-titulo">Línea de IA conversacional</h3>
+          
+        </header>
+        <p class="tarjeta-frase">NPCs y mentores de voz en tiempo real, en producción. Lidera esta línea desde 2025.</p>
+        <div class="tarjeta-porque">
+          <h4 class="subtitulo">Por qué importa</h4>
+          <p>Servidor de agentes en FastAPI (async, streaming, WebSockets), RAG sobre Milvus, caché de voz en Elixir/Phoenix y agentes de test con Playwright. 752 commits en 2026, su año más productivo. Y la regla que lo sostiene: **cada dependencia externa detrás de una interfaz, para que el servicio degrade en vez de caer**.</p>
+        </div>
+        <details class="tarjeta-etapas">
+          <summary>El camino hasta aquí (4 etapas)</summary>
+          <ol class="lista-etapas">
+            
+            <li class="etapa">
+              <span class="etapa-nombre">Idea</span>
+              <span class="etapa-titulo">Un NPC que responde en milisegundos</span>
+              <span class="etapa-detalle">La conversación tiene que ir en las dos direcciones: voz que entra, voz que sale, con el turno bien detectado.</span>
+            </li>
+            <li class="etapa">
+              <span class="etapa-nombre">Prototipo</span>
+              <span class="etapa-titulo">RAG sobre Milvus</span>
+              <span class="etapa-detalle">Recuperación vectorial para que el mentor de voz sepa de qué habla. El almacén vectorial es una dependencia más, y se trata como tal.</span>
+            </li>
+            <li class="etapa">
+              <span class="etapa-nombre">Plataforma</span>
+              <span class="etapa-titulo">Degradar en vez de caer</span>
+              <span class="etapa-detalle">Si el vector store o un proveedor de modelos no están, el servicio sigue respondiendo con menos. Los agentes de test con Playwright ejercitan los flujos de extremo a extremo.</span>
+            </li>
+            <li class="etapa">
+              <span class="etapa-nombre">Operación</span>
+              <span class="etapa-titulo">752 commits en 2026</span>
+              <span class="etapa-detalle">Su año más productivo, y el primero en que el producto de IA pasó de ser un experimento a estar en producción.</span>
+            </li>
+          </ol>
+        </details>
+        <ul class="lista-stack">
+            <li>FastAPI</li>
+            <li>LiveKit</li>
+            <li>Milvus</li>
+            <li>Elixir</li>
+            <li>Phoenix</li>
+            <li>Playwright</li>
+          </ul>
+        
+      </article>
+
+      <article class="tarjeta" id="api-plataforma" data-tipo="trabajo">
+        <header class="tarjeta-cabecera">
+          <h3 class="tarjeta-titulo">Contratos de API a escala</h3>
+          
+        </header>
+        <p class="tarjeta-frase">El servicio de definición de juegos: la API contra la que se construyen todas las herramientas internas y el runtime.</p>
+        <div class="tarjeta-porque">
+          <h4 class="subtitulo">Por qué importa</h4>
+          <p>**401 commits en siete años y sigue siendo la API de registro.** Por eso cada cambio es una decisión de versionado con compatibilidad hacia atrás, no un refactor. Y en esa plataforma de ~200M de usuarios mensuales, cada decisión tiene miles de clientes detrás.</p>
+        </div>
+        <details class="tarjeta-etapas">
+          <summary>El camino hasta aquí (2 etapas)</summary>
+          <ol class="lista-etapas">
+            
+            <li class="etapa">
+              <span class="etapa-nombre">Plataforma</span>
+              <span class="etapa-titulo">401 commits, siete años, y sigue siendo la API de registro</span>
+              <span class="etapa-detalle">Miles de consumidores internos construidos contra ese contrato. &quot;De qué depende qué&quot; se resuelve aquí, no en un documento.</span>
+            </li>
+            <li class="etapa">
+              <span class="etapa-nombre">Operación</span>
+              <span class="etapa-titulo">Un API es un contrato, y el que lo opera también es usuario</span>
+              <span class="etapa-detalle">Es lo que aprendí en diez años de IBM security y pre-sales: un contrato que cambia sin avisar rompe a gente que no estaba en la sala. La plataforma de i18n (145 commits) y los endpoints de BI viven en el mismo sistema.</span>
+            </li>
+          </ol>
+        </details>
+        <ul class="lista-stack">
+            <li>Node.js</li>
+            <li>TypeScript</li>
+            <li>Express</li>
+            <li>MongoDB</li>
+            <li>S3</li>
+          </ul>
+        
+      </article>
+
+      <article class="tarjeta" id="ibm" data-tipo="trabajo">
+        <header class="tarjeta-cabecera">
+          <h3 class="tarjeta-titulo">Diez años de IBM security y pre-sales</h3>
+          
+        </header>
+        <p class="tarjeta-frase">Security Systems Engineer, formador oficial y IT Channel Specialist en el portfolio de IBM.</p>
+        <div class="tarjeta-porque">
+          <h4 class="subtitulo">Por qué importa</h4>
+          <p>Formador oficial de WebSphere 7, Tivoli Storage Manager y Acronis, con el laboratorio de formación bajo su responsabilidad. En 2013, parte del equipo de siete que recibió el mejor VAD de software de IBM España. Es donde aprendí que un API es un contrato y que quien opera lo que lanzas también es usuario.</p>
+        </div>
+        <details class="tarjeta-etapas">
+          <summary>El camino hasta aquí (2 etapas)</summary>
+          <ol class="lista-etapas">
+            
+            <li class="etapa">
+              <span class="etapa-nombre">Idea</span>
+              <span class="etapa-titulo">Entender el sistema antes de programarlo</span>
+              <span class="etapa-detalle">DB2, Web Application Server, Tivoli Identity Manager y conectores propios sobre LDAP y directorios corporativos.</span>
+            </li>
+            <li class="etapa">
+              <span class="etapa-nombre">Operación</span>
+              <span class="etapa-titulo">Enseñar y sostener el laboratorio</span>
+              <span class="etapa-detalle">Entorno, material y entrega. Enseñar obliga a entender lo que se enseña mejor que ninguna otra cosa.</span>
+            </li>
+          </ol>
+        </details>
+        <ul class="lista-stack">
+            <li>IBM Cloud</li>
+            <li>WebSphere</li>
+            <li>Tivoli</li>
+            <li>DB2</li>
+          </ul>
+        
+      </article>
+      </div>
+    </section>
+
+    <!-- ============ Contacto ============ -->
+    <section class="seccion seccion-contacto" id="contacto">
+      <h2>Contacto</h2>
+      <p class="seccion-intro">
+        Abierto a posiciones Senior, Staff o Principal en plataforma, backend e IA
+        aplicada, en remoto dentro de la UE.
+      </p>
+      <ul class="lista-contacto">
+        <li>
+          <span class="contacto-etiqueta">Correo</span>
+          <a href="mailto:ahuertam@yahoo.es">ahuertam@yahoo.es</a>
+        </li>
+        <li>
+          <span class="contacto-etiqueta">Teléfono</span>
+          <a href="tel:+34687121948">+34 687 121 948</a>
+        </li>
+        <li>
+          <span class="contacto-etiqueta">GitHub</span>
+          <a href="https://github.com/ahuertam" rel="noopener noreferrer">github.com/ahuertam</a>
+        </li>
+        <li>
+          <span class="contacto-etiqueta">LinkedIn</span>
+          <a href="https://linkedin.com/in/alejandrohuertaengineer" rel="noopener noreferrer">linkedin.com/in/alejandrohuertaengineer</a>
+        </li>
+        <li>
+          <span class="contacto-etiqueta">CV</span>
+          <a href="/cv/Alejandro-Huerta-CV.pdf" download>Alejandro-Huerta-CV.pdf</a>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <p>
+      Hecho por Alejandro Huerta. Sitio estático: sin cookies, sin trackers, sin
+      fuentes externas que rastreen. Toda la información de esta página está en el
+      HTML, también sin JavaScript y sin WebGL.
+    </p>
+    <p class="pie-dominio">
+      <a href="https://metalozaru.es">metalozaru.es</a>
+    </p>
+  </footer>
+
+  <!--
+    El módulo de la escena se carga como módulo ES. Si falla la carga —sin red,
+    sin JS, bloqueado por una política de empresa— el resto de la página sigue
+    funcionando, porque la escena es sólo una capa encima.
+  -->
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+{
+  "name": "portfolio-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Web personal de Alejandro Huerta — portfolio con capa interactiva 3D",
+  "type": "module",
+  "scripts": {
+    "dev": "npm run build:html && vite",
+    "build:html": "node scripts/build-html.mjs",
+    "build": "npm run build:html && vite build",
+    "preview": "vite preview",
+    "check": "node scripts/check-fallback.mjs",
+    "test": "npm run build && node scripts/probar-grafo.mjs && node scripts/probar-escena.mjs && node scripts/probar-escena-webgl.mjs && node scripts/probar-editor.mjs && node scripts/probar-editor-paneles.mjs && node scripts/check-fallback.mjs",
+    "test:escena": "node scripts/probar-escena.mjs",
+    "test:escena-webgl": "node scripts/probar-escena-webgl.mjs",
+    "test:editor": "node scripts/probar-editor.mjs && node scripts/probar-editor-paneles.mjs",
+    "test:navegador": "node scripts/verificar-navegador.mjs",
+    "test:grafo": "node scripts/probar-grafo.mjs"
+  },
+  "keywords": [
+    "portfolio"
+  ],
+  "author": "Alejandro Huerta",
+  "license": "MIT",
+  "devDependencies": {
+    "vite": "^7.3.8"
+  },
+  "dependencies": {
+    "three": "^0.180.0"
+  }
+}
